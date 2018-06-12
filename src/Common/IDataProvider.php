@@ -28,6 +28,8 @@ namespace doganoo\SimpleRBAC\Common;
 use doganoo\PHPAlgorithms\Datastructure\Maps\HashMap;
 
 interface IDataProvider {
+    /** @var string SYSTEM hash table key for all permissions */
+    public const ALL_PERMISSIONS = "permissions.all";
 
     /**
      * the user whose permissions should be validated
@@ -42,4 +44,11 @@ interface IDataProvider {
      * @return mixed
      */
     public function getPermissions(): HashMap;
+
+    /**
+     * all default permissions that are public for all users
+     *
+     * @return HashMap
+     */
+    public function getDefaultPermissions(): HashMap;
 }

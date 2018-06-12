@@ -25,6 +25,7 @@
 
 namespace doganoo\SimpleRBAC\Handler;
 
+use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IDataProvider;
 use doganoo\SimpleRBAC\Object\Permission;
 
@@ -49,10 +50,44 @@ class PermissionHandler {
     /**
      * @param Permission $permission
      * @return bool
+     * @throws \doganoo\PHPAlgorithms\common\Exception\InvalidKeyTypeException
+     * @throws \doganoo\PHPAlgorithms\common\Exception\UnsupportedKeyTypeException
      */
     public function hasPermission(Permission $permission): bool {
-        $permissions = $this->dataProvider->getUser()->getPermissions();
+        $user = $this->dataProvider->getUser();
+        if (null === $user) {
+            return false;
+        }
+        if ($this->isDefaultPermission($permission)) {
+            return true;
+        }
+        $permissions = $user->getPermissions();
         $permission = $permissions->search($permission->getId());
         return null !== $permission;
     }
+
+    /**
+     * @param Permission $permission
+     * @return bool
+     * @throws \doganoo\PHPAlgorithms\common\Exception\InvalidKeyTypeException
+     * @throws \doganoo\PHPAlgorithms\common\Exception\UnsupportedKeyTypeException
+     */
+    private function isDefaultPermission(Permission $permission) {
+        $defaultPermissionsMap = $this->dataProvider->getDefaultPermissions();
+        $node = $defaultPermissionsMap->getNodeByKey(IDataProvider::ALL_PERMISSIONS);
+        if (null === $node) {
+            return false;
+        }
+        /** @var null|BinarySearchTree $defaultPermissions */
+        $defaultPermissions = $node->getValue();
+        if (null === $defaultPermissions) {
+            return false;
+        }
+        $permission = $defaultPermissions->search($permission->getId());
+        if (null === $permission) {
+            return false;
+        }
+        return true;
+    }
+
 }
