@@ -34,7 +34,7 @@ interface IDataProvider {
      *
      * @return IUser
      */
-    public function getUser(): IUser;
+    public function getUser(): ?IUser;
 
     /**
      * all permissions that are available in the system
