@@ -25,7 +25,7 @@
 
 namespace doganoo\SimpleRBAC\Handler;
 
-use doganoo\PHPAlgorithms\Algorithm\Traversal\InOrder;
+use doganoo\PHPAlgorithms\Algorithm\Traversal\PreOrder;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IDataProvider;
 
@@ -71,7 +71,7 @@ class PermissionHandler {
             return false;
         }
         $roles = $user->getRoles();
-        $inOrder = new InOrder($roles);
+        $inOrder = new PreOrder($roles);
         $found = false;
         $inOrder->setCallable(
             function ($userRoleId) use ($permission, &$found) {
