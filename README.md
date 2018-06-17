@@ -10,4 +10,5 @@ The library provides a simple way to verify permissions without re-inventing the
 * using permission objects in BinarySearchTree instead of simple ids
 
 The library is also available on Packagist: https://packagist.org/packages/doganoo/simple-rbac
+
 missing something? create a pull request!
