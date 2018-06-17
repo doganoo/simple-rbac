@@ -25,12 +25,15 @@
 
 namespace doganoo\SimpleRBAC\Common;
 
-use doganoo\PHPAlgorithms\Datastructure\Maps\HashMap;
+use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
+use doganoo\SimpleRBAC\Object\Permission;
 
+/**
+ * Interface IDataProvider
+ *
+ * @package doganoo\SimpleRBAC\Common
+ */
 interface IDataProvider {
-    /** @var string SYSTEM hash table key for all permissions */
-    public const ALL_PERMISSIONS = "permissions.all";
-
     /**
      * the user whose permissions should be validated
      *
@@ -39,16 +42,17 @@ interface IDataProvider {
     public function getUser(): ?IUser;
 
     /**
-     * all permissions that are available in the system
+     * returns the permission object that belongs to $id
      *
-     * @return mixed
+     * @param int $id
+     * @return Permission|null
      */
-    public function getPermissions(): HashMap;
+    public function getPermission(int $id): ?Permission;
 
     /**
      * all default permissions that are public for all users
      *
-     * @return HashMap
+     * @return null|BinarySearchTree
      */
-    public function getDefaultPermissions(): HashMap;
+    public function getDefaultPermissions(): ?BinarySearchTree;
 }

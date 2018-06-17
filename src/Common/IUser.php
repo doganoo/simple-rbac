@@ -27,6 +27,11 @@ namespace doganoo\SimpleRBAC\Common;
 
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 
+/**
+ * Interface IUser
+ *
+ * @package doganoo\SimpleRBAC\Common
+ */
 interface IUser {
 
     /**
@@ -58,17 +63,17 @@ interface IUser {
     public function setName(string $name): void;
 
     /**
-     * the permissions which the user owns
+     * returns the users roles
      *
-     * @return BinarySearchTree
+     * @return BinarySearchTree|null
      */
-    public function getPermissions(): BinarySearchTree;
+    public function getRoles(): ?BinarySearchTree;
 
     /**
-     * permissions belongig to an user
+     * sets the users roles
      *
-     * @param BinarySearchTree $permissions
-     * @return void
+     * @param BinarySearchTree|null $roles
      */
-    public function setPermissions(BinarySearchTree $permissions): void;
+    public function setRoles(?BinarySearchTree $roles): void;
+
 }

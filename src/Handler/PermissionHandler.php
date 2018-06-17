@@ -25,9 +25,9 @@
 
 namespace doganoo\SimpleRBAC\Handler;
 
+use doganoo\PHPAlgorithms\Algorithm\Traversal\InOrder;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IDataProvider;
-use doganoo\SimpleRBAC\Object\Permission;
 
 /**
  * Class PermissionHandler
@@ -48,43 +48,55 @@ class PermissionHandler {
     }
 
     /**
-     * @param Permission $permission
+     * returns a boolean that determines whether the user has the permission or not
+     *
+     * TODO break the traversal when $found is true
+     *
+     * @param int $id
      * @return bool
-     * @throws \doganoo\PHPAlgorithms\common\Exception\InvalidKeyTypeException
-     * @throws \doganoo\PHPAlgorithms\common\Exception\UnsupportedKeyTypeException
      */
-    public function hasPermission(Permission $permission): bool {
+    public function hasPermission(int $id): bool {
         $user = $this->dataProvider->getUser();
         if (null === $user) {
             return false;
         }
-        if ($this->isDefaultPermission($permission)) {
+        if (null === $user->getRoles()) {
+            return false;
+        }
+        if ($this->isDefaultPermission($id)) {
             return true;
         }
-        $permissions = $user->getPermissions();
-        $permission = $permissions->search($permission->getId());
-        return null !== $permission;
+        $permission = $this->dataProvider->getPermission($id);
+        if (null === $permission) {
+            return false;
+        }
+        $roles = $user->getRoles();
+        $inOrder = new InOrder($roles);
+        $found = false;
+        $inOrder->setCallable(
+            function ($userRoleId) use ($permission, &$found) {
+                $permissionRoles = $permission->getRoles();
+                $node = $permissionRoles->search($userRoleId);
+                if (null !== $node) {
+                    $found = true;
+                }
+            });
+        $inOrder->traverse();
+        return $found;
     }
 
     /**
-     * @param Permission $permission
+     * returns a boolean whether the permission is a default permission or not
+     * (for public menu entries, e.g.)
+     *
+     * @param int $id
      * @return bool
-     * @throws \doganoo\PHPAlgorithms\common\Exception\InvalidKeyTypeException
-     * @throws \doganoo\PHPAlgorithms\common\Exception\UnsupportedKeyTypeException
      */
-    private function isDefaultPermission(Permission $permission) {
-        $defaultPermissionsMap = $this->dataProvider->getDefaultPermissions();
-        $node = $defaultPermissionsMap->getNodeByKey(IDataProvider::ALL_PERMISSIONS);
+    private function isDefaultPermission(int $id) {
+        /** @var null|BinarySearchTree $defaultPermissionsMap */
+        $defaultPermissionsTree = $this->dataProvider->getDefaultPermissions();
+        $node = $defaultPermissionsTree->search($id);
         if (null === $node) {
-            return false;
-        }
-        /** @var null|BinarySearchTree $defaultPermissions */
-        $defaultPermissions = $node->getValue();
-        if (null === $defaultPermissions) {
-            return false;
-        }
-        $permission = $defaultPermissions->search($permission->getId());
-        if (null === $permission) {
             return false;
         }
         return true;

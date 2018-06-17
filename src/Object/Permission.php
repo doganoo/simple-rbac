@@ -26,6 +26,7 @@
 namespace doganoo\SimpleRBAC\Object;
 
 use doganoo\PHPAlgorithms\Common\Interfaces\Comparable;
+use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 
 /**
  * Class Permission
@@ -37,6 +38,8 @@ class Permission implements Comparable {
     private $id;
     /** @var string $name */
     private $name;
+    /** @var null|BinarySearchTree */
+    private $roles = null;
 
     /**
      * @return string
@@ -50,6 +53,20 @@ class Permission implements Comparable {
      */
     public function setName(string $name) {
         $this->name = $name;
+    }
+
+    /**
+     * @return BinarySearchTree|null
+     */
+    public function getRoles(): ?BinarySearchTree {
+        return $this->roles;
+    }
+
+    /**
+     * @param BinarySearchTree|null $roles
+     */
+    public function setRoles(?BinarySearchTree $roles): void {
+        $this->roles = $roles;
     }
 
     /**
