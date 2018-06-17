@@ -8,6 +8,6 @@ I have tried to keep things simple. The main idea was to let the user implement 
 The library provides a simple way to verify permissions without re-inventing the wheel. Notice that the library is still in development, there are few things to optimize:
 
 * using permission objects in BinarySearchTree instead of simple ids
-* handling roles and permissions on source code basis (currently the library expects this is done on user side (e.g. SQL) and it only receives permissions)
 
+The library is also available on Packagist: https://packagist.org/packages/doganoo/simple-rbac
 missing something? create a pull request!
