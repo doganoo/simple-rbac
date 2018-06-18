@@ -56,15 +56,15 @@ class PermissionHandler {
      * @return bool
      */
     public function hasPermission(int $id): bool {
+        if ($this->isDefaultPermission($id)) {
+            return true;
+        }
         $user = $this->dataProvider->getUser();
         if (null === $user) {
             return false;
         }
         if (null === $user->getRoles()) {
             return false;
-        }
-        if ($this->isDefaultPermission($id)) {
-            return true;
         }
         $permission = $this->dataProvider->getPermission($id);
         if (null === $permission) {
