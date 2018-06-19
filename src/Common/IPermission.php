@@ -23,84 +23,40 @@
  * SOFTWARE.
  */
 
-namespace doganoo\SimpleRBAC\Object;
+namespace doganoo\SimpleRBAC\Common;
+
 
 use doganoo\PHPAlgorithms\Common\Interfaces\Comparable;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 
-/**
- * Class Permission
- *
- * @package doganoo\SimpleRBAC
- * @deprecated do not use this class as it will be removed in the future. Use IPermission instead
- */
-class Permission implements Comparable {
-    /** @var int $id */
-    private $id;
-    /** @var string $name */
-    private $name;
-    /** @var null|BinarySearchTree */
-    private $roles = null;
-
+interface IPermission extends Comparable {
     /**
      * @return string
      */
-    public function getName(): string {
-        return $this->name;
-    }
+    public function getName(): string;
 
     /**
      * @param string $name
      */
-    public function setName(string $name) {
-        $this->name = $name;
-    }
+    public function setName(string $name): void;
 
     /**
      * @return BinarySearchTree|null
      */
-    public function getRoles(): ?BinarySearchTree {
-        return $this->roles;
-    }
+    public function getRoles(): ?BinarySearchTree;
 
     /**
      * @param BinarySearchTree|null $roles
      */
-    public function setRoles(?BinarySearchTree $roles): void {
-        $this->roles = $roles;
-    }
-
-    /**
-     * @param $object
-     * @return int
-     */
-    public function compareTo($object): int {
-        if (!$object instanceof Permission) {
-            return -1;
-        }
-        if ($this->getId() < $object->getId()) {
-            return -1;
-        }
-        if ($this->getId() == $object->getId()) {
-            return 0;
-        }
-        if ($this->getId() > $object->getId()) {
-            return 1;
-        }
-        return -1;
-    }
+    public function setRoles(?BinarySearchTree $roles): void;
 
     /**
      * @return int
      */
-    public function getId(): int {
-        return $this->id;
-    }
+    public function getId(): int;
 
     /**
      * @param int $id
      */
-    public function setId(int $id) {
-        $this->id = $id;
-    }
+    public function setId(int $id): void;
 }
