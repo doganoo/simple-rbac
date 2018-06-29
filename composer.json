@@ -15,8 +15,8 @@
     }
   },
   "require": {
-    "doganoo/php-algorithms": "0.0.1",
-    "doganoo/php-util": "0.0.2"
+    "doganoo/php-algorithms": "*",
+    "doganoo/php-util": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "6.5"
