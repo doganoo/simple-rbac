@@ -27,6 +27,7 @@ namespace doganoo\SimpleRBAC\Object;
 
 use doganoo\PHPAlgorithms\Common\Interfaces\Comparable;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
+use doganoo\SimpleRBAC\Common\IPermission;
 
 /**
  * Class Permission
@@ -75,7 +76,7 @@ class Permission implements Comparable {
      * @return int
      */
     public function compareTo($object): int {
-        if (!$object instanceof Permission) {
+        if (!$object instanceof IPermission) {
             return -1;
         }
         if ($this->getId() < $object->getId()) {

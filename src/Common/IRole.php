@@ -25,34 +25,43 @@
 
 namespace doganoo\SimpleRBAC\Common;
 
+
+use doganoo\PHPAlgorithms\Common\Interfaces\Comparable;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
-use doganoo\SimpleRBAC\Object\Permission;
 
 /**
- * Interface IDataProvider
+ * Interface IRole
  *
  * @package doganoo\SimpleRBAC\Common
  */
-interface IDataProvider {
+interface IRole extends Comparable {
     /**
-     * the user whose permissions should be validated
-     *
-     * @return IUser
+     * @return string
      */
-    public function getUser(): ?IUser;
+    public function getName(): string;
 
     /**
-     * returns the permission object that belongs to $id
-     *
+     * @param string $name
+     */
+    public function setName(string $name): void;
+
+    /**
+     * @return BinarySearchTree|null
+     */
+    public function getPermissions(): ?BinarySearchTree;
+
+    /**
+     * @param BinarySearchTree|null $permissions
+     */
+    public function setPermissions(?BinarySearchTree $permissions): void;
+
+    /**
+     * @return int
+     */
+    public function getId(): int;
+
+    /**
      * @param int $id
-     * @return Permission|null
      */
-    public function getPermission(int $id): ?IPermission;
-
-    /**
-     * all default permissions that are public for all users
-     *
-     * @return null|BinarySearchTree
-     */
-    public function getDefaultPermissions(): ?BinarySearchTree;
+    public function setId(int $id): void;
 }

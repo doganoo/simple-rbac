@@ -28,6 +28,7 @@ namespace doganoo\SimpleRBAC\Handler;
 use doganoo\PHPAlgorithms\Algorithm\Traversal\PreOrder;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IDataProvider;
+use doganoo\SimpleRBAC\Common\IPermission;
 
 /**
  * Class PermissionHandler
@@ -52,11 +53,14 @@ class PermissionHandler {
      *
      * TODO break the traversal when $found is true
      *
-     * @param int $id
+     * @param IPermission $permission
      * @return bool
      */
-    public function hasPermission(int $id): bool {
-        if ($this->isDefaultPermission($id)) {
+    public function hasPermission(IPermission $permission): bool {
+        if (null === $permission) {
+            return false;
+        }
+        if ($this->isDefaultPermission($permission)) {
             return true;
         }
         $user = $this->dataProvider->getUser();
@@ -66,22 +70,20 @@ class PermissionHandler {
         if (null === $user->getRoles()) {
             return false;
         }
-        $permission = $this->dataProvider->getPermission($id);
-        if (null === $permission) {
-            return false;
-        }
         $roles = $user->getRoles();
-        $inOrder = new PreOrder($roles);
+        $traversal = new PreOrder($roles);
         $found = false;
-        $inOrder->setCallable(
-            function ($userRoleId) use ($permission, &$found) {
+        $traversal->setCallable(
+            function ($userRoleId) use ($permission, &$found, &$traversal) {
                 $permissionRoles = $permission->getRoles();
-                $node = $permissionRoles->search($userRoleId);
-                if (null !== $node) {
-                    $found = true;
+                if (null !== $permissionRoles) {
+                    $node = $permissionRoles->search($userRoleId);
+                    if (null !== $node) {
+                        $found = true;
+                    }
                 }
             });
-        $inOrder->traverse();
+        $traversal->traverse();
         return $found;
     }
 
@@ -89,13 +91,19 @@ class PermissionHandler {
      * returns a boolean whether the permission is a default permission or not
      * (for public menu entries, e.g.)
      *
-     * @param int $id
+     * @param IPermission $permission
      * @return bool
      */
-    private function isDefaultPermission(int $id) {
+    private function isDefaultPermission(?IPermission $permission): bool {
+        if (null === $permission) {
+            return false;
+        }
         /** @var null|BinarySearchTree $defaultPermissionsMap */
         $defaultPermissionsTree = $this->dataProvider->getDefaultPermissions();
-        $node = $defaultPermissionsTree->search($id);
+        if (null === $defaultPermissionsTree) {
+            return false;
+        }
+        $node = $defaultPermissionsTree->search($permission);
         if (null === $node) {
             return false;
         }
