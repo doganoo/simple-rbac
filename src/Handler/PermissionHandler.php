@@ -29,6 +29,7 @@ use doganoo\PHPAlgorithms\Algorithm\Traversal\PreOrder;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IDataProvider;
 use doganoo\SimpleRBAC\Common\IPermission;
+use doganoo\SimpleRBAC\Common\IRole;
 
 /**
  * Class PermissionHandler
@@ -55,8 +56,12 @@ class PermissionHandler {
      *
      * @param IPermission $permission
      * @return bool
+     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
      */
     public function hasPermission(IPermission $permission): bool {
+        /**
+         * TODO the following null check is redundant since parameter has no question mark. Decide whether you want to allow null values or remove check
+         */
         if (null === $permission) {
             return false;
         }
@@ -74,7 +79,7 @@ class PermissionHandler {
         $traversal = new PreOrder($roles);
         $found = false;
         $traversal->setCallable(
-            function ($userRoleId) use ($permission, &$found, &$traversal) {
+            function ($userRoleId) use ($permission, &$found) {
                 $permissionRoles = $permission->getRoles();
                 if (null !== $permissionRoles) {
                     $node = $permissionRoles->search($userRoleId);
@@ -93,8 +98,10 @@ class PermissionHandler {
      *
      * @param IPermission $permission
      * @return bool
+     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
      */
     private function isDefaultPermission(?IPermission $permission): bool {
+        //TODO see "hasPermission" above
         if (null === $permission) {
             return false;
         }
@@ -108,6 +115,23 @@ class PermissionHandler {
             return false;
         }
         return true;
+    }
+
+    /**
+     * @param IRole $role
+     * @return bool
+     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
+     */
+    public function hasRole(IRole $role): bool {
+        //TODO see "hasPermission" above
+        if (null === $role) return false;
+        $user = $this->dataProvider->getUser();
+        if (null === $user) return false;
+        if (null === $user->getRoles()) return false;
+
+        $roles = $user->getRoles();
+        $node = $roles->search($role);
+        return null !== $node;
     }
 
 }
