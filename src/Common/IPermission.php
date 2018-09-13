@@ -29,6 +29,11 @@ namespace doganoo\SimpleRBAC\Common;
 use doganoo\PHPAlgorithms\Common\Interfaces\Comparable;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 
+/**
+ * Interface IPermission
+ *
+ * @package doganoo\SimpleRBAC\Common
+ */
 interface IPermission extends Comparable {
     /**
      * @return string

@@ -27,6 +27,8 @@ namespace doganoo\SimpleRBAC\Handler;
 
 use doganoo\PHPAlgorithms\Algorithm\Traversal\PreOrder;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
+use doganoo\PHPAlgorithms\Datastructure\Maps\HashMap;
+use doganoo\PHPAlgorithms\Datastructure\Maps\IntegerVector;
 use doganoo\SimpleRBAC\Common\IDataProvider;
 use doganoo\SimpleRBAC\Common\IPermission;
 use doganoo\SimpleRBAC\Common\IRole;
@@ -39,14 +41,27 @@ use doganoo\SimpleRBAC\Common\IRole;
 class PermissionHandler {
     /** @var IDataProvider $dataProvider */
     private $dataProvider = null;
+    /** @var HashMap|null $permissionMap */
+    private $permissionMap = null;
+    /** @var IntegerVector|null $permissionVector */
+    private $permissionVector = null;
+    /** @var IntegerVector|null $defaultPermissionVector */
+    private $defaultPermissionVector = null;
+    /** @var IntegerVector|null $roleVector */
+    private $roleVector = null;
 
     /**
      * PermissionHandler constructor.
      *
      * @param IDataProvider $dataProvider
+     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidBitLengthException
      */
     public function __construct(IDataProvider $dataProvider) {
         $this->dataProvider = $dataProvider;
+        $this->permissionMap = new HashMap();
+        $this->permissionVector = new IntegerVector();
+        $this->defaultPermissionVector = new IntegerVector();
+        $this->roleVector = new IntegerVector();
     }
 
     /**
@@ -59,22 +74,14 @@ class PermissionHandler {
      * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
      */
     public function hasPermission(IPermission $permission): bool {
-        /**
-         * TODO the following null check is redundant since parameter has no question mark. Decide whether you want to allow null values or remove check
-         */
-        if (null === $permission) {
-            return false;
-        }
-        if ($this->isDefaultPermission($permission)) {
-            return true;
-        }
+        //notice that there is no null check necessary since the
+        //method declaration does not allow $permission to be null
+        if ($this->isDefaultPermission($permission)) return true;
         $user = $this->dataProvider->getUser();
-        if (null === $user) {
-            return false;
-        }
-        if (null === $user->getRoles()) {
-            return false;
-        }
+        if (null === $user) return false;
+        if (null === $user->getRoles()) return false;
+        if ($this->permissionVector->get($permission->getId())) return true;
+
         $roles = $user->getRoles();
         $traversal = new PreOrder($roles);
         $found = false;
@@ -85,6 +92,7 @@ class PermissionHandler {
                     $node = $permissionRoles->search($userRoleId);
                     if (null !== $node) {
                         $found = true;
+                        $this->permissionVector->set($permission->getId());
                     }
                 }
             });
@@ -101,19 +109,13 @@ class PermissionHandler {
      * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
      */
     private function isDefaultPermission(?IPermission $permission): bool {
-        //TODO see "hasPermission" above
-        if (null === $permission) {
-            return false;
-        }
+        if ($this->defaultPermissionVector->get($permission->getId())) return true;
         /** @var null|BinarySearchTree $defaultPermissionsMap */
         $defaultPermissionsTree = $this->dataProvider->getDefaultPermissions();
-        if (null === $defaultPermissionsTree) {
-            return false;
-        }
+        if (null === $defaultPermissionsTree) return false;
         $node = $defaultPermissionsTree->search($permission);
-        if (null === $node) {
-            return false;
-        }
+        if (null === $node) return false;
+        $this->defaultPermissionVector->set($permission->getId());
         return true;
     }
 
@@ -123,15 +125,15 @@ class PermissionHandler {
      * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
      */
     public function hasRole(IRole $role): bool {
-        //TODO see "hasPermission" above
-        if (null === $role) return false;
+        if ($this->roleVector->get($role->getId())) return true;
         $user = $this->dataProvider->getUser();
         if (null === $user) return false;
         if (null === $user->getRoles()) return false;
-
         $roles = $user->getRoles();
         $node = $roles->search($role);
-        return null !== $node;
+        if (null === $node) return false;
+        $this->roleVector->set($role->getId());
+        return true;
     }
 
 }

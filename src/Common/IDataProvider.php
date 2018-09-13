@@ -26,7 +26,6 @@
 namespace doganoo\SimpleRBAC\Common;
 
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
-use doganoo\SimpleRBAC\Object\Permission;
 
 /**
  * Interface IDataProvider
@@ -45,7 +44,7 @@ interface IDataProvider {
      * returns the permission object that belongs to $id
      *
      * @param int $id
-     * @return Permission|null
+     * @return IPermission|null
      */
     public function getPermission(int $id): ?IPermission;
 
