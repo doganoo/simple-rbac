@@ -27,7 +27,6 @@ namespace doganoo\SimpleRBAC\Handler;
 
 use doganoo\PHPAlgorithms\Algorithm\Traversal\PreOrder;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
-use doganoo\PHPAlgorithms\Datastructure\Maps\HashMap;
 use doganoo\PHPAlgorithms\Datastructure\Maps\IntegerVector;
 use doganoo\SimpleRBAC\Common\IDataProvider;
 use doganoo\SimpleRBAC\Common\IPermission;
@@ -41,8 +40,6 @@ use doganoo\SimpleRBAC\Common\IRole;
 class PermissionHandler {
     /** @var IDataProvider $dataProvider */
     private $dataProvider = null;
-    /** @var HashMap|null $permissionMap */
-    private $permissionMap = null;
     /** @var IntegerVector|null $permissionVector */
     private $permissionVector = null;
     /** @var IntegerVector|null $defaultPermissionVector */
@@ -58,7 +55,6 @@ class PermissionHandler {
      */
     public function __construct(IDataProvider $dataProvider) {
         $this->dataProvider = $dataProvider;
-        $this->permissionMap = new HashMap();
         $this->permissionVector = new IntegerVector();
         $this->defaultPermissionVector = new IntegerVector();
         $this->roleVector = new IntegerVector();
