@@ -1,19 +1,15 @@
 <?php
 /**
  * MIT License
- *
  * Copyright (c) 2018 Dogan Ucar
- *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,7 +21,6 @@
 
 namespace doganoo\SimpleRBAC\Common;
 
-
 use doganoo\PHPAlgorithms\Common\Interfaces\Comparable;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 
@@ -34,34 +29,34 @@ use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
  *
  * @package doganoo\SimpleRBAC\Common
  */
-interface IPermission extends Comparable {
-    /**
-     * @return string
-     */
-    public function getName(): string;
+interface IPermission extends Comparable{
+	/**
+	 * @return string
+	 */
+	public function getName(): string;
 
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): void;
+	/**
+	 * @param string $name
+	 */
+	public function setName(string $name): void;
 
-    /**
-     * @return BinarySearchTree|null
-     */
-    public function getRoles(): ?BinarySearchTree;
+	/**
+	 * @return BinarySearchTree|null
+	 */
+	public function getRoles(): ?BinarySearchTree;
 
-    /**
-     * @param BinarySearchTree|null $roles
-     */
-    public function setRoles(?BinarySearchTree $roles): void;
+	/**
+	 * @param BinarySearchTree|null $roles
+	 */
+	public function setRoles(?BinarySearchTree $roles): void;
 
-    /**
-     * @return int
-     */
-    public function getId(): int;
+	/**
+	 * @return int
+	 */
+	public function getId(): int;
 
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void;
+	/**
+	 * @param int $id
+	 */
+	public function setId(int $id): void;
 }
