@@ -10,3 +10,7 @@ The library provides a simple way to verify permissions without re-inventing the
 The library is also available on Packagist: https://packagist.org/packages/doganoo/simple-rbac
 
 missing something? create a pull request!
+
+## Changelog
+
+* 1.3.0 supporting owners: 

@@ -1,19 +1,15 @@
 <?php
 /**
  * MIT License
- *
  * Copyright (c) 2018 Dogan Ucar
- *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,6 +27,7 @@ use doganoo\PHPAlgorithms\Datastructure\Maps\IntegerVector;
 use doganoo\SimpleRBAC\Common\IDataProvider;
 use doganoo\SimpleRBAC\Common\IPermission;
 use doganoo\SimpleRBAC\Common\IRole;
+use doganoo\SimpleRBAC\Common\IUser;
 
 /**
  * Class PermissionHandler
@@ -51,6 +48,7 @@ class PermissionHandler {
      * PermissionHandler constructor.
      *
      * @param IDataProvider $dataProvider
+     *
      * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidBitLengthException
      */
     public function __construct(IDataProvider $dataProvider) {
@@ -62,10 +60,10 @@ class PermissionHandler {
 
     /**
      * returns a boolean that determines whether the user has the permission or not
-     *
      * TODO break the traversal when $found is true
      *
      * @param IPermission $permission
+     *
      * @return bool
      * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
      */
@@ -77,7 +75,11 @@ class PermissionHandler {
         if (null === $user) return false;
         if (null === $user->getRoles()) return false;
         if ($this->permissionVector->get($permission->getId())) return true;
-
+        //if the permission (the item) has a owner,
+        //then we grant this permission to the owner.
+        //In this case, it does not matter whether the
+        //user granted the permission explicitly or not.
+        if ($this->isOwner($user, $permission->getOwner())) return true;
         $roles = $user->getRoles();
         $traversal = new PreOrder($roles);
         $found = false;
@@ -101,6 +103,7 @@ class PermissionHandler {
      * (for public menu entries, e.g.)
      *
      * @param IPermission $permission
+     *
      * @return bool
      * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
      */
@@ -116,7 +119,21 @@ class PermissionHandler {
     }
 
     /**
+     * @param IUser|null $currentUser
+     * @param IUser|null $permissionUser
+     * @return bool
+     */
+    private function isOwner(?IUser $currentUser, ?IUser $permissionUser): bool {
+        if (null === $currentUser) return false;
+        if (null === $permissionUser) return false;
+        return $currentUser->getId() === $permissionUser->getId();
+    }
+
+    /**
      * @param IRole $role
+     *
+     * TODO globally enabling / disabling this feature?!
+     *
      * @return bool
      * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
      */
@@ -131,5 +148,4 @@ class PermissionHandler {
         $this->roleVector->set($role->getId());
         return true;
     }
-
 }

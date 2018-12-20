@@ -21,7 +21,7 @@
 
 namespace doganoo\SimpleRBAC\Common;
 
-use doganoo\PHPAlgorithms\Common\Interfaces\Comparable;
+use doganoo\PHPAlgorithms\Common\Interfaces\IComparable;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 
 /**
@@ -29,34 +29,45 @@ use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
  *
  * @package doganoo\SimpleRBAC\Common
  */
-interface IPermission extends Comparable{
-	/**
-	 * @return string
-	 */
-	public function getName(): string;
+interface IPermission extends IComparable {
+    /**
+     * @return string
+     */
+    public function getName(): string;
 
-	/**
-	 * @param string $name
-	 */
-	public function setName(string $name): void;
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void;
 
-	/**
-	 * @return BinarySearchTree|null
-	 */
-	public function getRoles(): ?BinarySearchTree;
+    /**
+     * @return BinarySearchTree|null
+     */
+    public function getRoles(): ?BinarySearchTree;
 
-	/**
-	 * @param BinarySearchTree|null $roles
-	 */
-	public function setRoles(?BinarySearchTree $roles): void;
+    /**
+     * @param BinarySearchTree|null $roles
+     */
+    public function setRoles(?BinarySearchTree $roles): void;
 
-	/**
-	 * @return int
-	 */
-	public function getId(): int;
+    /**
+     * @return int
+     */
+    public function getId(): int;
 
-	/**
-	 * @param int $id
-	 */
-	public function setId(int $id): void;
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void;
+
+    /**
+     * @param IUser $owner
+     */
+    public function setOwner(IUser $owner): void;
+
+    /**
+     * @return IUser|null
+     */
+    public function getOwner(): ?IUser;
+
 }
