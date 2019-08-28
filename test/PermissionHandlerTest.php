@@ -26,16 +26,16 @@ declare(strict_types=1);
 
 namespace doganoo\SimpleRBAC\Test;
 
-use doganoo\SimpleRBAC\Test\DataProvider\DataProvider;
-use doganoo\SimpleRBAC\Test\DataProvider\MassiveDataProvider;
 use doganoo\PHPAlgorithms\Common\Exception\InvalidBitLengthException;
 use doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IUser;
 use doganoo\SimpleRBAC\Handler\PermissionHandler;
-use PHPUnit\Framework\TestCase;
+use doganoo\SimpleRBAC\Test\DataProvider\DataProvider;
+use doganoo\SimpleRBAC\Test\DataProvider\MassiveDataProvider;
 use doganoo\SimpleRBAC\Test\Util\PermissionUtil;
 use doganoo\SimpleRBAC\Test\Util\RoleUtil;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class PermissionHandlerTest

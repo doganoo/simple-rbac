@@ -26,8 +26,7 @@ declare(strict_types=1);
 
 namespace doganoo\SimpleRBAC\Common;
 
-
-use doganoo\PHPAlgorithms\Common\Interfaces\Comparable;
+use doganoo\PHPAlgorithms\Common\Interfaces\IComparable;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 
 /**
@@ -35,7 +34,7 @@ use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
  *
  * @package doganoo\SimpleRBAC\Common
  */
-interface IRole extends Comparable {
+interface IRole extends IComparable {
     /**
      * @return string
      */

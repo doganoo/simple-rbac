@@ -23,10 +23,13 @@ declare(strict_types=1);
 namespace doganoo\SimpleRBAC\Handler;
 
 use doganoo\PHPAlgorithms\Algorithm\Traversal\PreOrder;
+use doganoo\PHPAlgorithms\Common\Exception\InvalidBitLengthException;
+use doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
-use doganoo\PHPAlgorithms\Datastructure\Maps\IntegerVector;
+use doganoo\PHPAlgorithms\Datastructure\Vector\BitVector\IntegerVector;
 use doganoo\SimpleRBAC\Common\IDataProvider;
 use doganoo\SimpleRBAC\Common\IPermission;
+use doganoo\SimpleRBAC\Common\IPermissionHandler;
 use doganoo\SimpleRBAC\Common\IRole;
 use doganoo\SimpleRBAC\Common\IUser;
 
@@ -35,7 +38,7 @@ use doganoo\SimpleRBAC\Common\IUser;
  *
  * @package doganoo\SimpleRBAC\Handler
  */
-class PermissionHandler {
+class PermissionHandler implements IPermissionHandler {
     /** @var IDataProvider $dataProvider */
     private $dataProvider = null;
     /** @var IntegerVector|null $permissionVector */
@@ -50,7 +53,7 @@ class PermissionHandler {
      *
      * @param IDataProvider $dataProvider
      *
-     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidBitLengthException
+     * @throws InvalidBitLengthException
      */
     public function __construct(IDataProvider $dataProvider) {
         $this->dataProvider = $dataProvider;
@@ -66,7 +69,7 @@ class PermissionHandler {
      * @param IPermission $permission
      *
      * @return bool
-     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
+     * @throws InvalidSearchComparisionException
      */
     public function hasPermission(IPermission $permission): bool {
         //notice that there is no null check necessary since the
@@ -106,7 +109,7 @@ class PermissionHandler {
      * @param IPermission $permission
      *
      * @return bool
-     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
+     * @throws InvalidSearchComparisionException
      */
     private function isDefaultPermission(?IPermission $permission): bool {
         if ($this->defaultPermissionVector->get($permission->getId())) return true;
@@ -133,10 +136,8 @@ class PermissionHandler {
     /**
      * @param IRole $role
      *
-     * TODO globally enabling / disabling this feature?!
-     *
      * @return bool
-     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
+     * @throws InvalidSearchComparisionException
      */
     public function hasRole(IRole $role): bool {
         if ($this->roleVector->get($role->getId())) return true;

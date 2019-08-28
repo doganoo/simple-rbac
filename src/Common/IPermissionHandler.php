@@ -24,43 +24,14 @@ declare(strict_types=1);
  * SOFTWARE.
  */
 
-namespace doganoo\SimpleRBAC\Test\Util;
-
-use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
-use doganoo\SimpleRBAC\Common\IRole;
-use doganoo\SimpleRBAC\Test\DataProvider\Role;
+namespace doganoo\SimpleRBAC\Common;
 
 /**
- * Class RoleUtil
- *
- * @package Util
+ * Interface IPermissionHandler
+ * @package doganoo\SimpleRBAC\Common
  */
-class RoleUtil {
-    /**
-     * RoleUtil constructor.
-     */
-    private function __construct() {
-    }
-
-    /**
-     * @param int $number
-     * @return BinarySearchTree
-     */
-    public static function getRoles(int $number = 10): BinarySearchTree {
-        $binarySearchTree = new BinarySearchTree();
-        for ($i = 1; $i <= $number; $i++) {
-            $binarySearchTree->insertValue(RoleUtil::toRole($i));
-        }
-        return $binarySearchTree;
-    }
-
-    /**
-     * @param int $id
-     * @return IRole
-     */
-    public static function toRole(int $id): IRole {
-        $role = new Role();
-        $role->setId($id);
-        return $role;
-    }
+interface IPermissionHandler {
+    public function __construct(IDataProvider $dataProvider);
+    public function hasPermission(IPermission $permission): bool;
+    public function hasRole(IRole $role): bool;
 }

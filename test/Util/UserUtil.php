@@ -82,7 +82,6 @@ class UserUtil {
              * @param string $name
              */
             public function setName(string $name): void {
-                // TODO: Implement setName() method.
             }
 
             /**

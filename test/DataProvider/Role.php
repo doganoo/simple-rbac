@@ -103,4 +103,5 @@ class Role implements IRole {
     public function setId(int $id): void {
         $this->id = $id;
     }
+
 }

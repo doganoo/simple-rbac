@@ -74,4 +74,5 @@ class MassiveDataProvider implements IDataProvider {
         $permission->setRoles($tree);
         return $permission;
     }
+
 }

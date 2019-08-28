@@ -25,9 +25,9 @@
 
 namespace doganoo\SimpleRBAC\Test\Util;
 
-use doganoo\SimpleRBAC\Test\DataProvider\Permission;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IPermission;
+use doganoo\SimpleRBAC\Test\DataProvider\Permission;
 
 /**
  * Class PermissionUtil
