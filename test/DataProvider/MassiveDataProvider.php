@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * MIT License
  *
@@ -23,14 +24,13 @@
  * SOFTWARE.
  */
 
-namespace DataProvider;
-
+namespace doganoo\SimpleRBAC\Test\DataProvider;
 
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IDataProvider;
 use doganoo\SimpleRBAC\Common\IPermission;
 use doganoo\SimpleRBAC\Common\IUser;
-use Util\PermissionUtil;
+use doganoo\SimpleRBAC\Test\Util\PermissionUtil;
 
 /**
  * Class MassiveDataProvider

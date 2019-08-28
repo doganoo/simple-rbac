@@ -23,9 +23,9 @@
  * SOFTWARE.
  */
 
-namespace Util;
+namespace doganoo\SimpleRBAC\Test\Util;
 
-use DataProvider\Permission;
+use doganoo\SimpleRBAC\Test\DataProvider\Permission;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IPermission;
 

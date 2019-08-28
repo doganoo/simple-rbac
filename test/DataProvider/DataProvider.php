@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * MIT License
  *
@@ -23,29 +24,30 @@
  * SOFTWARE.
  */
 
-namespace DataProvider;
-
+namespace doganoo\SimpleRBAC\Test\DataProvider;
 
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IDataProvider;
 use doganoo\SimpleRBAC\Common\IPermission;
 use doganoo\SimpleRBAC\Common\IUser;
-use Util\PermissionUtil;
-use Util\RoleUtil;
+use doganoo\SimpleRBAC\Test\Util\PermissionUtil;
+use doganoo\SimpleRBAC\Test\Util\RoleUtil;
 
 /**
  * Class DataProvider
  *
  * @package DataProvider
  */
-class DataProvider implements IDataProvider {
+class DataProvider implements IDataProvider
+{
 
     /**
      * the user whose permissions should be validated
      *
      * @return IUser
      */
-    public function getUser(): ?IUser {
+    public function getUser(): ?IUser
+    {
         $user = new User();
         $user->setId(1);
 
@@ -67,7 +69,8 @@ class DataProvider implements IDataProvider {
      * @param int $id
      * @return Permission|null
      */
-    public function getPermission(int $id): ?IPermission {
+    public function getPermission(int $id): ?IPermission
+    {
         if (in_array($id, [1, 8, 75, 19])) {
             $permission = new Permission();
             $permission->setId($id);
@@ -88,7 +91,8 @@ class DataProvider implements IDataProvider {
      *
      * @return null|BinarySearchTree
      */
-    public function getDefaultPermissions(): ?BinarySearchTree {
+    public function getDefaultPermissions(): ?BinarySearchTree
+    {
         $tree = new BinarySearchTree();
         $tree->insertValue(PermissionUtil::toPermission(101));
         $tree->insertValue(PermissionUtil::toPermission(102));

@@ -1,15 +1,20 @@
 <?php
+declare(strict_types=1);
 /**
  * MIT License
+ *
  * Copyright (c) 2018 Dogan Ucar
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,20 +24,25 @@
  * SOFTWARE.
  */
 
-use DataProvider\DataProvider;
-use DataProvider\MassiveDataProvider;
+namespace doganoo\SimpleRBAC\Test;
+
+use doganoo\SimpleRBAC\Test\DataProvider\DataProvider;
+use doganoo\SimpleRBAC\Test\DataProvider\MassiveDataProvider;
+use doganoo\PHPAlgorithms\Common\Exception\InvalidBitLengthException;
+use doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IUser;
 use doganoo\SimpleRBAC\Handler\PermissionHandler;
-use Util\PermissionUtil;
-use Util\RoleUtil;
+use PHPUnit\Framework\TestCase;
+use doganoo\SimpleRBAC\Test\Util\PermissionUtil;
+use doganoo\SimpleRBAC\Test\Util\RoleUtil;
 
 /**
  * Class PermissionHandlerTest
  */
-class PermissionHandlerTest extends \PHPUnit\Framework\TestCase {
+class PermissionHandlerTest extends TestCase {
     /**
-     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
+     * @throws InvalidSearchComparisionException
      */
     public function testDataProvider() {
         $dataProvider = new DataProvider();
@@ -53,8 +63,8 @@ class PermissionHandlerTest extends \PHPUnit\Framework\TestCase {
     }
 
     /**
-     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
-     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidBitLengthException
+     * @throws InvalidSearchComparisionException
+     * @throws InvalidBitLengthException
      */
     public function testUserRolesAndPermissions() {
         $permissionHandler = new PermissionHandler(new DataProvider());
@@ -66,8 +76,8 @@ class PermissionHandlerTest extends \PHPUnit\Framework\TestCase {
     }
 
     /**
-     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
-     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidBitLengthException
+     * @throws InvalidSearchComparisionException
+     * @throws InvalidBitLengthException
      */
     public function testMassiveData() {
         $permissionHandler = new PermissionHandler(new MassiveDataProvider());
@@ -75,8 +85,8 @@ class PermissionHandlerTest extends \PHPUnit\Framework\TestCase {
     }
 
     /**
-     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException
-     * @throws \doganoo\PHPAlgorithms\Common\Exception\InvalidBitLengthException
+     * @throws InvalidSearchComparisionException
+     * @throws InvalidBitLengthException
      */
     public function testHasRole() {
         $permissionHandler = new PermissionHandler(new DataProvider());
@@ -88,6 +98,10 @@ class PermissionHandlerTest extends \PHPUnit\Framework\TestCase {
         $this->assertTrue($hasRole === true);
     }
 
+    /**
+     * @throws InvalidBitLengthException
+     * @throws InvalidSearchComparisionException
+     */
     public function testOwner() {
         $permission = PermissionUtil::toPermission(20, 1);
         $permissionHandler = new PermissionHandler(new DataProvider());

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * MIT License
  *
@@ -23,12 +24,9 @@
  * SOFTWARE.
  */
 
-namespace Util;
+namespace doganoo\SimpleRBAC\Test\Util;
 
-
-use DataProvider\Role;
-use doganoo\PHPAlgorithms\Common\Abstracts\AbstractTree;
-use doganoo\PHPAlgorithms\Common\Interfaces\IBinaryTree;
+use doganoo\SimpleRBAC\Test\DataProvider\Role;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IRole;
 
