@@ -26,7 +26,10 @@
 namespace doganoo\SimpleRBAC\Test\Util;
 
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
+use doganoo\SimpleRBAC\Common\IContext;
 use doganoo\SimpleRBAC\Common\IPermission;
+use doganoo\SimpleRBAC\Common\IUser;
+use doganoo\SimpleRBAC\Test\DataProvider\Context;
 use doganoo\SimpleRBAC\Test\DataProvider\Permission;
 
 /**
@@ -43,31 +46,38 @@ class PermissionUtil {
 
     /**
      * @param int $number
+     * @param array $users
      * @return BinarySearchTree
      */
-    public static function getPermissions(int $number = 10) {
+    public static function getPermissions(int $number = 10, array $users = null) {
         $searchTree = new BinarySearchTree();
         for ($i = 0; $i < $number; $i++) {
-            $searchTree->insertValue(PermissionUtil::toPermission($i));
+            $searchTree->insertValue(PermissionUtil::toPermission($i, $users[$i] ?? null));
         }
         return $searchTree;
     }
 
     /**
      * @param int $id
-     * @param int|null $owner
+     * @param IUser $user
      * @return IPermission
      */
-    public static function toPermission(int $id, int $owner = null): IPermission {
+    public static function toPermission(int $id, ?IUser $user = null): IPermission {
         $permission = new Permission();
         $permission->setId($id);
-        if (null !== $owner) {
-            $owner = UserUtil::toUser($owner);
-            $permission->setOwner($owner);
+        if (null !== $user) {
+            $permission->setContext(
+                PermissionUtil::toContext($user)
+            );
         }
         return $permission;
     }
 
+    public static function toContext(IUser $user):IContext {
+        $context = new Context();
+        $context->addUser($user);
+        return $context;
+    }
     /**
      * @param IPermission $permission
      * @param int $number
@@ -89,4 +99,5 @@ class PermissionUtil {
         }
         return $searchTree;
     }
+
 }

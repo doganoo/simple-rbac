@@ -39,7 +39,7 @@ use doganoo\SimpleRBAC\Test\Util\UserUtil;
  *
  * @package DataProvider
  */
-class DataProvider implements IDataProvider {
+class ContextDataProvider implements IDataProvider {
 
     /**
      * the user whose permissions should be validated
@@ -48,15 +48,10 @@ class DataProvider implements IDataProvider {
      */
     public function getUser(): ?IUser {
         $user = new User();
-        $user->setId(1);
+        $user->setId(999);
 
         $tree = new BinarySearchTree();
         $tree->insertValue(RoleUtil::toRole(5));
-        $tree->insertValue(RoleUtil::toRole(4));
-        $tree->insertValue(RoleUtil::toRole(7));
-        $tree->insertValue(RoleUtil::toRole(3));
-        $tree->insertValue(RoleUtil::toRole(6));
-
         $user->setRoles($tree);
 
         return $user;
@@ -69,7 +64,7 @@ class DataProvider implements IDataProvider {
      * @return Permission|null
      */
     public function getPermission(int $id): ?IPermission {
-        if (in_array($id, [1, 8, 75, 19])) {
+        if (in_array($id, [75])) {
             $permission = new Permission();
             $permission->setId($id);
             $permission->setContext(

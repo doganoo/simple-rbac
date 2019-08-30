@@ -27,15 +27,17 @@ declare(strict_types=1);
 namespace doganoo\SimpleRBAC\Test\DataProvider;
 
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
+use doganoo\SimpleRBAC\Common\IContext;
 use doganoo\SimpleRBAC\Common\IPermission;
 use doganoo\SimpleRBAC\Common\IUser;
+use JsonSerializable;
 
 /**
  * Class Permission
  *
  * @package DataProvider
  */
-class Permission implements IPermission {
+class Permission implements IPermission, JsonSerializable {
 
     /** @var int $id */
     private $id;
@@ -43,8 +45,8 @@ class Permission implements IPermission {
     private $name;
     /** @var null|BinarySearchTree */
     private $roles = null;
-    /** @var null|IUser */
-    private $owner = null;
+    /** @var null|IContext */
+    private $context = null;
 
     /**
      * @return string
@@ -108,17 +110,29 @@ class Permission implements IPermission {
         $this->id = $id;
     }
 
+    public function setContext(IContext $context):void {
+        $this->context = $context;
+    }
     /**
-     * @return IUser|null
+     * @return IContext|null
      */
-    public function getOwner(): ?IUser {
-        return $this->owner;
+    public function getContext(): ?IContext {
+        return $this->context;
     }
 
     /**
-     * @param IUser $owner
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
      */
-    public function setOwner(IUser $owner): void {
-        $this->owner = $owner;
+    public function jsonSerialize() {
+        return [
+            "id"        => $this->getId()
+            , "name"    => $this->getName()
+            , "roles"   => $this->getRoles()
+            , "context" => $this->getContext()
+        ];
     }
 }

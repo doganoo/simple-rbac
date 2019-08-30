@@ -61,6 +61,7 @@ class RoleUtil {
     public static function toRole(int $id): IRole {
         $role = new Role();
         $role->setId($id);
+        $role->setName("simple-rbac-unit-test");
         return $role;
     }
 }

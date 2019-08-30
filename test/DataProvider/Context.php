@@ -26,64 +26,50 @@ declare(strict_types=1);
 
 namespace doganoo\SimpleRBAC\Test\DataProvider;
 
-use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
+
+use doganoo\PHPAlgorithms\Common\Exception\InvalidKeyTypeException;
+use doganoo\PHPAlgorithms\Common\Exception\UnsupportedKeyTypeException;
+use doganoo\PHPAlgorithms\Datastructure\Maps\HashMap;
+use doganoo\SimpleRBAC\Common\IContext;
 use doganoo\SimpleRBAC\Common\IUser;
 use JsonSerializable;
 
 /**
- * Class User
- *
- * @package DataProvider
+ * Class Context
+ * @package doganoo\SimpleRBAC\Test\DataProvider
  */
-class User implements IUser, JsonSerializable {
-    private $id = null;
-    private $name = null;
-    private $roles = null;
+class Context implements IContext, JsonSerializable {
+    /** @var HashMap|null $attributes */
+    private $attributes = null;
 
     /**
-     * @return int
+     * Context constructor.
      */
-    public function getId(): int {
-        return $this->id;
+    public function __construct() {
+        $this->attributes = new HashMap();
     }
 
     /**
-     * @param int $id
+     * the user for whom the check should made
+     *
+     * @param IUser $user
+     * @throws InvalidKeyTypeException
+     * @throws UnsupportedKeyTypeException
      */
-    public function setId(int $id): void {
-        $this->id = $id;
+    public function addUser(IUser $user): void {
+        $this->attributes->put(IContext::USER, $user);
     }
 
     /**
-     * @return string
-     */
-    public function getName(): string {
-        return $this->name;
-    }
-
-    /**
+     * returns an attribute
+     *
      * @param string $name
+     * @return mixed
+     * @throws InvalidKeyTypeException
+     * @throws UnsupportedKeyTypeException
      */
-    public function setName(string $name): void {
-        $this->name = $name;
-    }
-
-    /**
-     * returns the users roles
-     *
-     * @return BinarySearchTree|null
-     */
-    public function getRoles(): ?BinarySearchTree {
-        return $this->roles;
-    }
-
-    /**
-     * sets the users roles
-     *
-     * @param BinarySearchTree|null $roles
-     */
-    public function setRoles(?BinarySearchTree $roles): void {
-        $this->roles = $roles;
+    public function getAttribute(string $name) {
+        return $this->attributes->get($name);
     }
 
     /**
@@ -95,9 +81,7 @@ class User implements IUser, JsonSerializable {
      */
     public function jsonSerialize() {
         return [
-            "id"      => $this->getId()
-            , "name"  => $this->getName()
-            , "roles" => $this->getRoles()
+            "attributes" => $this->attributes
         ];
     }
 }

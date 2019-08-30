@@ -31,10 +31,12 @@ use doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IUser;
 use doganoo\SimpleRBAC\Handler\PermissionHandler;
+use doganoo\SimpleRBAC\Test\DataProvider\ContextDataProvider;
 use doganoo\SimpleRBAC\Test\DataProvider\DataProvider;
 use doganoo\SimpleRBAC\Test\DataProvider\MassiveDataProvider;
 use doganoo\SimpleRBAC\Test\Util\PermissionUtil;
 use doganoo\SimpleRBAC\Test\Util\RoleUtil;
+use doganoo\SimpleRBAC\Test\Util\UserUtil;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -60,6 +62,30 @@ class PermissionHandlerTest extends TestCase {
         $this->assertTrue($defaultPermissions->height() === 4);
         $this->assertTrue($defaultPermissions->search(PermissionUtil::toPermission(101)) !== null);
         $this->assertTrue($defaultPermissions->search(PermissionUtil::toPermission(10)) === null);
+    }
+
+    /**
+     * @throws InvalidBitLengthException
+     * @throws InvalidSearchComparisionException
+     */
+    public function testWithContext(){
+        $permissionHandler = new PermissionHandler(new ContextDataProvider());
+        $permission = PermissionUtil::toPermission(1);
+        $permission75User999 = PermissionUtil::toPermission(
+            75
+            , UserUtil::toUser(999)
+        );
+        $permission75User999->setRoles(RoleUtil::getRoles(10));
+
+        $permission75User1234 = PermissionUtil::toPermission(
+            75
+            , UserUtil::toUser(1234)
+        );
+        $permission75User999->setRoles(RoleUtil::getRoles(10));
+
+        $this->assertTrue(false === $permissionHandler->hasPermission($permission));
+        $this->assertTrue(true === $permissionHandler->hasPermission($permission75User999));
+        $this->assertTrue(false === $permissionHandler->hasPermission($permission75User1234));
     }
 
     /**
@@ -96,21 +122,6 @@ class PermissionHandlerTest extends TestCase {
         $role = RoleUtil::toRole(5);
         $hasRole = $permissionHandler->hasRole($role);
         $this->assertTrue($hasRole === true);
-    }
-
-    /**
-     * @throws InvalidBitLengthException
-     * @throws InvalidSearchComparisionException
-     */
-    public function testOwner() {
-        $permission = PermissionUtil::toPermission(20, 1);
-        $permissionHandler = new PermissionHandler(new DataProvider());
-        $this->assertTrue(true === $permissionHandler->hasPermission($permission));
-
-
-        $permission = PermissionUtil::toPermission(20, 5);
-        $permissionHandler = new PermissionHandler(new DataProvider());
-        $this->assertTrue(false === $permissionHandler->hasPermission($permission));
     }
 
 }

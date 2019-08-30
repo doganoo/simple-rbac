@@ -28,13 +28,14 @@ namespace doganoo\SimpleRBAC\Test\DataProvider;
 
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IRole;
+use JsonSerializable;
 
 /**
  * Class Role
  *
  * @package DataProvider
  */
-class Role implements IRole {
+class Role implements IRole, JsonSerializable {
     /** @var int $id */
     private $id;
     /** @var string $name */
@@ -104,4 +105,18 @@ class Role implements IRole {
         $this->id = $id;
     }
 
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize() {
+        return [
+            "id" => $this->getId()
+            , "name" => $this->getName()
+            , "permissions" => $this->getPermissions()
+        ];
+    }
 }

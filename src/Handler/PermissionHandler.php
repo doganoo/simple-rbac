@@ -27,6 +27,7 @@ use doganoo\PHPAlgorithms\Common\Exception\InvalidBitLengthException;
 use doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\PHPAlgorithms\Datastructure\Vector\BitVector\IntegerVector;
+use doganoo\SimpleRBAC\Common\IContext;
 use doganoo\SimpleRBAC\Common\IDataProvider;
 use doganoo\SimpleRBAC\Common\IPermission;
 use doganoo\SimpleRBAC\Common\IPermissionHandler;
@@ -64,7 +65,6 @@ class PermissionHandler implements IPermissionHandler {
 
     /**
      * returns a boolean that determines whether the user has the permission or not
-     * TODO break the traversal when $found is true
      *
      * @param IPermission $permission
      *
@@ -78,12 +78,12 @@ class PermissionHandler implements IPermissionHandler {
         $user = $this->dataProvider->getUser();
         if (null === $user) return false;
         if (null === $user->getRoles()) return false;
+        // we will check the context first. This is possible since
+        // if there is no context, we return true and proceed with
+        // the permission check
+        if (false === $this->checkContext($permission)) return false;
         if ($this->permissionVector->get($permission->getId())) return true;
-        //if the permission (the item) has a owner,
-        //then we grant this permission to the owner.
-        //In this case, it does not matter whether the
-        //user granted the permission explicitly or not.
-        if ($this->isOwner($user, $permission->getOwner())) return true;
+
         $roles = $user->getRoles();
         $traversal = new PreOrder($roles);
         $found = false;
@@ -123,14 +123,26 @@ class PermissionHandler implements IPermissionHandler {
     }
 
     /**
-     * @param IUser|null $currentUser
-     * @param IUser|null $permissionUser
+     * We check the context here. The context is an additional requirement
+     * for permissions. The user gets an permission granted, but is he also
+     * able to see the resource in a specific context?
+     *
+     * For instance, the user wants to open a profile page of an other user.
+     *
+     * Currently, we support only users.
+     *
+     * @param IPermission $permission
      * @return bool
      */
-    private function isOwner(?IUser $currentUser, ?IUser $permissionUser): bool {
-        if (null === $currentUser) return false;
-        if (null === $permissionUser) return false;
-        return $currentUser->getId() === $permissionUser->getId();
+    private function checkContext(IPermission $permission):bool {
+        if (null === $permission->getContext()) return true;
+
+        /** @var IUser $user */
+        $user = $permission->getContext()->getAttribute(IContext::USER);
+        if ($user->getId() !== $this->dataProvider->getUser()->getId()) return false;
+
+        return true;
+
     }
 
     /**
