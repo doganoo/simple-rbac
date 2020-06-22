@@ -29,7 +29,7 @@ namespace doganoo\SimpleRBAC\Test\DataProvider;
 
 use doganoo\PHPAlgorithms\Common\Exception\InvalidKeyTypeException;
 use doganoo\PHPAlgorithms\Common\Exception\UnsupportedKeyTypeException;
-use doganoo\PHPAlgorithms\Datastructure\Maps\HashMap;
+use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
 use doganoo\SimpleRBAC\Common\IContext;
 use doganoo\SimpleRBAC\Common\IUser;
 use JsonSerializable;
@@ -39,14 +39,14 @@ use JsonSerializable;
  * @package doganoo\SimpleRBAC\Test\DataProvider
  */
 class Context implements IContext, JsonSerializable {
-    /** @var HashMap|null $attributes */
+    /** @var HashTable|null $attributes */
     private $attributes = null;
 
     /**
      * Context constructor.
      */
     public function __construct() {
-        $this->attributes = new HashMap();
+        $this->attributes = new HashTable();
     }
 
     /**
