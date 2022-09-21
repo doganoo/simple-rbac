@@ -24,46 +24,29 @@ declare(strict_types=1);
  * SOFTWARE.
  */
 
-namespace doganoo\SimpleRBAC\Common;
+namespace doganoo\SimpleRBAC\Entity;
 
-use doganoo\PHPAlgorithms\Common\Interfaces\IComparable;
-use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
+use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
 
 /**
- * Interface IRole
+ * Interface IUser
  *
  * @package doganoo\SimpleRBAC\Common
  */
-interface IRole extends IComparable {
+interface IUser {
 
     /**
-     * @return string
-     */
-    public function getName(): string;
-
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): void;
-
-    /**
-     * @return BinarySearchTree|null
-     */
-    public function getPermissions(): ?BinarySearchTree;
-
-    /**
-     * @param BinarySearchTree|null $permissions
-     */
-    public function setPermissions(?BinarySearchTree $permissions): void;
-
-    /**
+     * the users identifier
+     *
      * @return int
      */
     public function getId(): int;
 
     /**
-     * @param int $id
+     * returns the users roles
+     *
+     * @return HashTable
      */
-    public function setId(int $id): void;
+    public function getRoles(): HashTable;
 
 }

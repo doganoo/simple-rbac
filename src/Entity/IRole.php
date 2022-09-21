@@ -24,46 +24,31 @@ declare(strict_types=1);
  * SOFTWARE.
  */
 
-namespace doganoo\SimpleRBAC\Test\Util;
+namespace doganoo\SimpleRBAC\Entity;
 
-use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
-use doganoo\SimpleRBAC\Common\IRole;
-use doganoo\SimpleRBAC\Test\DataProvider\Role;
+use doganoo\PHPAlgorithms\Common\Interfaces\IComparable;
+use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
 
 /**
- * Class RoleUtil
+ * Interface IRole
  *
- * @package Util
+ * @package doganoo\SimpleRBAC\Common
  */
-class RoleUtil {
+interface IRole extends IComparable {
 
     /**
-     * RoleUtil constructor.
+     * @return int
      */
-    private function __construct() {
-    }
+    public function getId(): int;
 
     /**
-     * @param int $number
-     * @return BinarySearchTree
+     * @return string
      */
-    public static function getRoles(int $number = 10): BinarySearchTree {
-        $binarySearchTree = new BinarySearchTree();
-        for ($i = 1; $i <= $number; $i++) {
-            $binarySearchTree->insertValue(RoleUtil::toRole($i));
-        }
-        return $binarySearchTree;
-    }
+    public function getName(): string;
 
     /**
-     * @param int $id
-     * @return IRole
+     * @return HashTable
      */
-    public static function toRole(int $id): IRole {
-        $role = new Role();
-        $role->setId($id);
-        $role->setName("simple-rbac-unit-test");
-        return $role;
-    }
+    public function getPermissions(): HashTable;
 
 }
