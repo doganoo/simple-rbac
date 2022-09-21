@@ -4,13 +4,13 @@ declare(strict_types=1);
 namespace doganoo\SimpleRBAC\Repository;
 
 use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
-use doganoo\SimpleRBAC\Entity\IRole;
-use doganoo\SimpleRBAC\Entity\IUser;
+use doganoo\SimpleRBAC\Entity\RoleInterface;
+use doganoo\SimpleRBAC\Entity\UserInterface;
 
 interface PermissionRepositoryInterface {
 
-    public function getRolesByUser(IUser $user): HashTable;
+    public function getRolesByUser(UserInterface $user): HashTable;
 
-    public function getPermissionsByRole(IRole $role): HashTable;
+    public function getPermissionsByRole(RoleInterface $role): HashTable;
 
 }

@@ -26,29 +26,27 @@ declare(strict_types=1);
 
 namespace doganoo\SimpleRBAC\Entity;
 
-use doganoo\PHPAlgorithms\Common\Interfaces\IComparable;
 use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
 
 /**
- * Interface IRole
+ * Interface IUser
  *
  * @package doganoo\SimpleRBAC\Common
  */
-interface IRole extends IComparable {
+interface UserInterface {
 
     /**
+     * the users identifier
+     *
      * @return int
      */
     public function getId(): int;
 
     /**
-     * @return string
-     */
-    public function getName(): string;
-
-    /**
+     * returns the users roles
+     *
      * @return HashTable
      */
-    public function getPermissions(): HashTable;
+    public function getRoles(): HashTable;
 
 }

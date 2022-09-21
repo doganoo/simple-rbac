@@ -2,19 +2,15 @@
 declare(strict_types=1);
 /**
  * MIT License
- *
  * Copyright (c) 2018 Dogan Ucar
- *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,27 +22,23 @@ declare(strict_types=1);
 
 namespace doganoo\SimpleRBAC\Entity;
 
-use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
+use doganoo\PHPAlgorithms\Common\Interfaces\IComparable;
 
 /**
- * Interface IUser
+ * Interface IPermission
  *
  * @package doganoo\SimpleRBAC\Common
  */
-interface IUser {
+interface PermissionInterface extends IComparable {
 
     /**
-     * the users identifier
-     *
      * @return int
      */
     public function getId(): int;
 
     /**
-     * returns the users roles
-     *
-     * @return HashTable
+     * @return string
      */
-    public function getRoles(): HashTable;
+    public function getName(): string;
 
 }

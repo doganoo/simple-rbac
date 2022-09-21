@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace doganoo\SimpleRBAC\Service;
 
 use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
-use doganoo\SimpleRBAC\Entity\IPermission;
-use doganoo\SimpleRBAC\Entity\IRole;
-use doganoo\SimpleRBAC\Entity\IUser;
+use doganoo\SimpleRBAC\Entity\PermissionInterface;
+use doganoo\SimpleRBAC\Entity\RoleInterface;
+use doganoo\SimpleRBAC\Entity\UserInterface;
 use doganoo\SimpleRBAC\Repository\PermissionRepositoryInterface;
 
 class RBACService implements RBACServiceInterface {
@@ -17,16 +17,16 @@ class RBACService implements RBACServiceInterface {
         $this->permissionRepository = $permissionRepository;
     }
 
-    public function getRolesByUser(IUser $user): HashTable {
+    public function getRolesByUser(UserInterface $user): HashTable {
         return $this->permissionRepository->getRolesByUser($user);
     }
 
-    public function getPermissionsByRole(IRole $role): HashTable {
+    public function getPermissionsByRole(RoleInterface $role): HashTable {
         return $this->permissionRepository->getPermissionsByRole($role);
     }
 
-    public function hasPermission(IUser $user, IPermission $permission): bool {
-        /** @var IRole $role */
+    public function hasPermission(UserInterface $user, PermissionInterface $permission): bool {
+        /** @var RoleInterface $role */
         foreach ($user->getRoles()->toArray() as $role) {
             if (true === $role->getPermissions()->contains($permission->getId())) {
                 return true;
@@ -35,7 +35,7 @@ class RBACService implements RBACServiceInterface {
         return false;
     }
 
-    public function hasRole(IUser $user, IRole $role): bool {
+    public function hasRole(UserInterface $user, RoleInterface $role): bool {
         return $user->getRoles()->contains($role->getId());
     }
 
