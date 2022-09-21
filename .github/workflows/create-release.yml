@@ -17,13 +17,13 @@ jobs:
         with:
           dev: yes
           args: --profile --ignore-platform-reqs
-          php_extensions: intl json
+          php_extensions: json
           php_version: 7.4
 
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v3
         with:
-          configuration: test/phpunit.xml
-          php_extensions: intl
+          configuration: phpunit.xml
+          php_extensions: json
           php_version: 7.4
           memory_limit: 256M
