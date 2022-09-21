@@ -4,75 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7685f9174a46c01869dd7aeef12d04a7",
+    "content-hash": "5a15ac9a9085a238cf28fdcadc65e64a",
     "packages": [
         {
-            "name": "apache/log4php",
-            "version": "2.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/apache/logging-log4php.git",
-                "reference": "cac428b6f67d2035af39784da1d1a299ef42fcf2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/apache/logging-log4php/zipball/cac428b6f67d2035af39784da1d1a299ef42fcf2",
-                "reference": "cac428b6f67d2035af39784da1d1a299ef42fcf2",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.7"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/main/php/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "A versatile logging framework for PHP",
-            "homepage": "http://logging.apache.org/log4php/",
-            "keywords": [
-                "log",
-                "logging",
-                "php"
-            ],
-            "support": {
-                "email": "log4php-user@logging.apache.org",
-                "issues": "https://issues.apache.org/jira/browse/LOG4PHP",
-                "source": "https://svn.apache.org/repos/asf/logging/log4php"
-            },
-            "abandoned": true,
-            "time": "2012-10-26T09:13:25+00:00"
-        },
-        {
             "name": "doganoo/php-algorithms",
-            "version": "1.0.7",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doganoo/PHPAlgorithms.git",
-                "reference": "6d2636f4373a1f5b30a9fb82a686e6263f6be9c7"
+                "reference": "a0c855e2ac26995ac2404c15ecd29cbc97d61400"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doganoo/PHPAlgorithms/zipball/6d2636f4373a1f5b30a9fb82a686e6263f6be9c7",
-                "reference": "6d2636f4373a1f5b30a9fb82a686e6263f6be9c7",
+                "url": "https://api.github.com/repos/doganoo/PHPAlgorithms/zipball/a0c855e2ac26995ac2404c15ecd29cbc97d61400",
+                "reference": "a0c855e2ac26995ac2404c15ecd29cbc97d61400",
                 "shasum": ""
             },
             "require": {
-                "doganoo/php-util": "0.3.*",
+                "doganoo/php-util": "0.5.*",
                 "ext-json": "*",
-                "ext-pdo": "*",
-                "php": ">=7.1"
+                "php": ">=7.4"
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.9",
                 "phpcompatibility/php-compatibility": "^9.3",
                 "phpstan/phpstan": "^0.12.54",
                 "phpunit/phpunit": "6.5",
+                "roave/security-advisories": "dev-latest",
                 "squizlabs/php_codesniffer": "^3.5"
             },
             "type": "library",
@@ -101,7 +59,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doganoo/PHPAlgorithms/issues",
-                "source": "https://github.com/doganoo/PHPAlgorithms/tree/1.1.0"
+                "source": "https://github.com/doganoo/PHPAlgorithms/tree/2.1.0"
             },
             "funding": [
                 {
@@ -109,24 +67,23 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-02-07T22:10:22+00:00"
+            "time": "2022-05-25T20:11:27+00:00"
         },
         {
             "name": "doganoo/php-util",
-            "version": "0.3.17",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doganoo/PHPUtil.git",
-                "reference": "b29b4f298e670f18aa6cb60e2bdadec38326e641"
+                "reference": "f8ce213c221e1a35b45479a4336027c8cd20c6cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doganoo/PHPUtil/zipball/b29b4f298e670f18aa6cb60e2bdadec38326e641",
-                "reference": "b29b4f298e670f18aa6cb60e2bdadec38326e641",
+                "url": "https://api.github.com/repos/doganoo/PHPUtil/zipball/f8ce213c221e1a35b45479a4336027c8cd20c6cc",
+                "reference": "f8ce213c221e1a35b45479a4336027c8cd20c6cc",
                 "shasum": ""
             },
             "require": {
-                "apache/log4php": "2.3.0",
                 "doganoo/php-algorithms": "*",
                 "ext-fileinfo": "*",
                 "ext-iconv": "*",
@@ -157,9 +114,9 @@
             "description": "A collection of common classes and methods that I am usually working with",
             "support": {
                 "issues": "https://github.com/doganoo/PHPUtil/issues",
-                "source": "https://github.com/doganoo/PHPUtil/tree/0.3.17"
+                "source": "https://github.com/doganoo/PHPUtil/tree/0.5.0"
             },
-            "time": "2021-01-14T13:08:17+00:00"
+            "time": "2021-09-11T07:04:55+00:00"
         }
     ],
     "packages-dev": [

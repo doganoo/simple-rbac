@@ -1,0 +1,29 @@
+on:
+  push:
+
+name: Run Tests
+
+jobs:
+  build:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # tests
+      - name: Composer Install
+        uses: php-actions/composer@v5
+        with:
+          dev: yes
+          args: --profile --ignore-platform-reqs
+          php_extensions: intl json
+          php_version: 7.4
+
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@v3
+        with:
+          configuration: test/phpunit.xml
+          php_extensions: intl
+          php_version: 7.4
+          memory_limit: 256M
