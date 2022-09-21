@@ -64,7 +64,7 @@ class ContextDataProvider implements IDataProvider {
      * @return Permission|null
      */
     public function getPermission(int $id): ?IPermission {
-        if (in_array($id, [75])) {
+        if (in_array($id, [75], true)) {
             $permission = new Permission();
             $permission->setId($id);
             $permission->setContext(

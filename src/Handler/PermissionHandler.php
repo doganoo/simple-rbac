@@ -23,9 +23,7 @@ declare(strict_types=1);
 namespace doganoo\SimpleRBAC\Handler;
 
 use doganoo\PHPAlgorithms\Algorithm\Traversal\PreOrder;
-use doganoo\PHPAlgorithms\Common\Exception\InvalidBitLengthException;
 use doganoo\PHPAlgorithms\Common\Exception\InvalidSearchComparisionException;
-use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\PHPAlgorithms\Datastructure\Vector\BitVector\IntegerVector;
 use doganoo\SimpleRBAC\Common\IContext;
 use doganoo\SimpleRBAC\Common\IDataProvider;
@@ -40,27 +38,23 @@ use doganoo\SimpleRBAC\Common\IUser;
  * @package doganoo\SimpleRBAC\Handler
  */
 class PermissionHandler implements IPermissionHandler {
-    /** @var IDataProvider $dataProvider */
-    private $dataProvider = null;
-    /** @var IntegerVector|null $permissionVector */
-    private $permissionVector = null;
-    /** @var IntegerVector|null $defaultPermissionVector */
-    private $defaultPermissionVector = null;
-    /** @var IntegerVector|null $roleVector */
-    private $roleVector = null;
+
+    private IDataProvider $dataProvider;
+    private IntegerVector $permissionVector;
+    private IntegerVector $defaultPermissionVector;
+    private IntegerVector $roleVector;
 
     /**
      * PermissionHandler constructor.
      *
      * @param IDataProvider $dataProvider
      *
-     * @throws InvalidBitLengthException
      */
     public function __construct(IDataProvider $dataProvider) {
-        $this->dataProvider = $dataProvider;
-        $this->permissionVector = new IntegerVector();
+        $this->dataProvider            = $dataProvider;
+        $this->permissionVector        = new IntegerVector();
         $this->defaultPermissionVector = new IntegerVector();
-        $this->roleVector = new IntegerVector();
+        $this->roleVector              = new IntegerVector();
     }
 
     /**
@@ -84,9 +78,9 @@ class PermissionHandler implements IPermissionHandler {
         if (false === $this->checkContext($permission)) return false;
         if ($this->permissionVector->get($permission->getId())) return true;
 
-        $roles = $user->getRoles();
+        $roles     = $user->getRoles();
         $traversal = new PreOrder($roles);
-        $found = false;
+        $found     = false;
         $traversal->setCallable(
             function ($userRoleId) use ($permission, &$found) {
                 $permissionRoles = $permission->getRoles();
@@ -111,9 +105,8 @@ class PermissionHandler implements IPermissionHandler {
      * @return bool
      * @throws InvalidSearchComparisionException
      */
-    private function isDefaultPermission(?IPermission $permission): bool {
+    private function isDefaultPermission(IPermission $permission): bool {
         if ($this->defaultPermissionVector->get($permission->getId())) return true;
-        /** @var null|BinarySearchTree $defaultPermissionsMap */
         $defaultPermissionsTree = $this->dataProvider->getDefaultPermissions();
         if (null === $defaultPermissionsTree) return false;
         $node = $defaultPermissionsTree->search($permission);
@@ -134,15 +127,14 @@ class PermissionHandler implements IPermissionHandler {
      * @param IPermission $permission
      * @return bool
      */
-    private function checkContext(IPermission $permission):bool {
+    private function checkContext(IPermission $permission): bool {
         if (null === $permission->getContext()) return true;
-
         /** @var IUser $user */
-        $user = $permission->getContext()->getAttribute(IContext::USER);
-        if ($user->getId() !== $this->dataProvider->getUser()->getId()) return false;
-
+        $user             = $permission->getContext()->getAttribute(IContext::USER);
+        $dataProviderUser = $this->dataProvider->getUser();
+        if (null === $dataProviderUser) return false;
+        if ($user->getId() !== $dataProviderUser->getId()) return false;
         return true;
-
     }
 
     /**
@@ -157,9 +149,10 @@ class PermissionHandler implements IPermissionHandler {
         if (null === $user) return false;
         if (null === $user->getRoles()) return false;
         $roles = $user->getRoles();
-        $node = $roles->search($role);
+        $node  = $roles->search($role);
         if (null === $node) return false;
         $this->roleVector->set($role->getId());
         return true;
     }
+
 }

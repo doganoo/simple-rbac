@@ -38,6 +38,7 @@ use doganoo\SimpleRBAC\Test\Util\PermissionUtil;
  * @package DataProvider
  */
 class MassiveDataProvider implements IDataProvider {
+
     private const DATA_AMOUNT = 7000;
 
     /**
@@ -59,8 +60,7 @@ class MassiveDataProvider implements IDataProvider {
      * @return null|BinarySearchTree
      */
     public function getDefaultPermissions(): ?BinarySearchTree {
-        $tree = PermissionUtil::getPermissions(0);
-        return $tree;
+        return PermissionUtil::getPermissions(0);
     }
 
     /**

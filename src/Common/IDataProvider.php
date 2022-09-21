@@ -34,6 +34,7 @@ use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
  * @package doganoo\SimpleRBAC\Common
  */
 interface IDataProvider {
+
     /**
      * the user whose permissions should be validated
      *
@@ -55,4 +56,5 @@ interface IDataProvider {
      * @return null|BinarySearchTree
      */
     public function getDefaultPermissions(): ?BinarySearchTree;
+
 }

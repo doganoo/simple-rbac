@@ -1,0 +1,8 @@
+includes:
+    - %rootDir%/../../../config/phpstan/baseline.neon
+parameters:
+	excludePaths:
+	    - %rootDir%/../../../vendor/*
+	checkMissingIterableValueType: false
+	treatPhpDocTypesAsCertain: false
+	reportUnmatchedIgnoredErrors: true

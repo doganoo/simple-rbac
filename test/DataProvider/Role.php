@@ -36,12 +36,10 @@ use JsonSerializable;
  * @package DataProvider
  */
 class Role implements IRole, JsonSerializable {
-    /** @var int $id */
-    private $id;
-    /** @var string $name */
-    private $name;
-    /** @var null|BinarySearchTree */
-    private $permissions = null;
+
+    private int               $id;
+    private string            $name;
+    private ?BinarySearchTree $permissions = null;
 
     /**
      * @return string
@@ -107,16 +105,17 @@ class Role implements IRole, JsonSerializable {
 
     /**
      * Specify data which should be serialized to JSON
-     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
-     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * @link  https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return array data which can be serialized by <b>json_encode</b>,
      * which is a value of any type other than a resource.
      * @since 5.4.0
      */
-    public function jsonSerialize() {
+    public function jsonSerialize(): array {
         return [
-            "id" => $this->getId()
-            , "name" => $this->getName()
+            "id"            => $this->getId()
+            , "name"        => $this->getName()
             , "permissions" => $this->getPermissions()
         ];
     }
+
 }

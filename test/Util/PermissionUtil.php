@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * MIT License
  *
@@ -38,6 +39,7 @@ use doganoo\SimpleRBAC\Test\DataProvider\Permission;
  * @package Util
  */
 class PermissionUtil {
+
     /**
      * PermissionUtil constructor.
      */
@@ -45,11 +47,11 @@ class PermissionUtil {
     }
 
     /**
-     * @param int $number
+     * @param int   $number
      * @param array $users
      * @return BinarySearchTree
      */
-    public static function getPermissions(int $number = 10, array $users = null) {
+    public static function getPermissions(int $number = 10, array $users = []): BinarySearchTree {
         $searchTree = new BinarySearchTree();
         for ($i = 0; $i < $number; $i++) {
             $searchTree->insertValue(PermissionUtil::toPermission($i, $users[$i] ?? null));
@@ -58,8 +60,8 @@ class PermissionUtil {
     }
 
     /**
-     * @param int $id
-     * @param IUser $user
+     * @param int    $id
+     * @param ?IUser $user
      * @return IPermission
      */
     public static function toPermission(int $id, ?IUser $user = null): IPermission {
@@ -73,14 +75,15 @@ class PermissionUtil {
         return $permission;
     }
 
-    public static function toContext(IUser $user):IContext {
+    public static function toContext(IUser $user): IContext {
         $context = new Context();
         $context->addUser($user);
         return $context;
     }
+
     /**
      * @param IPermission $permission
-     * @param int $number
+     * @param int         $number
      * @return IPermission
      */
     public static function addRoles(IPermission $permission, int $number = 10): IPermission {

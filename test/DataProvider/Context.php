@@ -39,8 +39,8 @@ use JsonSerializable;
  * @package doganoo\SimpleRBAC\Test\DataProvider
  */
 class Context implements IContext, JsonSerializable {
-    /** @var HashTable|null $attributes */
-    private $attributes = null;
+
+    private HashTable $attributes;
 
     /**
      * Context constructor.
@@ -74,14 +74,15 @@ class Context implements IContext, JsonSerializable {
 
     /**
      * Specify data which should be serialized to JSON
-     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
-     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * @link  https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return array data which can be serialized by <b>json_encode</b>,
      * which is a value of any type other than a resource.
      * @since 5.4.0
      */
-    public function jsonSerialize() {
+    public function jsonSerialize(): array {
         return [
             "attributes" => $this->attributes
         ];
     }
+
 }

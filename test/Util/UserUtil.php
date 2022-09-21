@@ -34,6 +34,7 @@ use doganoo\SimpleRBAC\Common\IUser;
  * @package doganoo\SimpleRBAC\Test\Util
  */
 class UserUtil {
+
     /**
      * UserUtil constructor.
      */
@@ -46,8 +47,9 @@ class UserUtil {
      */
     public static function toUser(int $id): IUser {
         $x = new class implements IUser {
-            private $id;
-            private $roles;
+
+            private int               $id;
+            private ?BinarySearchTree $roles;
 
             /**
              * the users identifier
@@ -101,8 +103,10 @@ class UserUtil {
             public function setRoles(?BinarySearchTree $roles): void {
                 $this->roles = $roles;
             }
+
         };
         $x->setId($id);
         return $x;
     }
+
 }

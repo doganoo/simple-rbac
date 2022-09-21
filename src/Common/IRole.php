@@ -35,6 +35,7 @@ use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
  * @package doganoo\SimpleRBAC\Common
  */
 interface IRole extends IComparable {
+
     /**
      * @return string
      */
@@ -64,4 +65,5 @@ interface IRole extends IComparable {
      * @param int $id
      */
     public function setId(int $id): void;
+
 }

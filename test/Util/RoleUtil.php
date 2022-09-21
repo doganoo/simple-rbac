@@ -36,6 +36,7 @@ use doganoo\SimpleRBAC\Test\DataProvider\Role;
  * @package Util
  */
 class RoleUtil {
+
     /**
      * RoleUtil constructor.
      */
@@ -64,4 +65,5 @@ class RoleUtil {
         $role->setName("simple-rbac-unit-test");
         return $role;
     }
+
 }

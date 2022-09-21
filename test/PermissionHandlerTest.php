@@ -37,26 +37,48 @@ use doganoo\SimpleRBAC\Test\DataProvider\MassiveDataProvider;
 use doganoo\SimpleRBAC\Test\Util\PermissionUtil;
 use doganoo\SimpleRBAC\Test\Util\RoleUtil;
 use doganoo\SimpleRBAC\Test\Util\UserUtil;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class PermissionHandlerTest
  */
 class PermissionHandlerTest extends TestCase {
+
     /**
      * @throws InvalidSearchComparisionException
      */
-    public function testDataProvider() {
+    public function testDataProvider(): void {
         $dataProvider = new DataProvider();
-        $user = $dataProvider->getUser();
+        $user         = $dataProvider->getUser();
+
+        if (null === $user) {
+            throw new Exception();
+        }
+
+        $roles = $user->getRoles();
+
+        if (null === $roles) {
+            throw new Exception();
+        }
+
         $permission = $dataProvider->getPermission(1);
+
+        if (null === $permission) {
+            throw new Exception();
+        }
+
         $defaultPermissions = $dataProvider->getDefaultPermissions();
+
+        if (null === $defaultPermissions) {
+            throw new Exception();
+        }
         $this->assertTrue($user instanceof IUser);
         $this->assertTrue($user->getId() === 1);
-        $this->assertTrue($user->getRoles() instanceof BinarySearchTree);
-        $this->assertTrue($user->getRoles()->height() === 3);
-        $this->assertTrue($user->getRoles()->search(RoleUtil::toRole(5)) !== null);
-        $this->assertTrue($user->getRoles()->search(RoleUtil::toRole(15)) === null);
+        $this->assertTrue($roles instanceof BinarySearchTree);
+        $this->assertTrue($roles->height() === 3);
+        $this->assertTrue($roles->search(RoleUtil::toRole(5)) !== null);
+        $this->assertTrue($roles->search(RoleUtil::toRole(15)) === null);
         $this->assertTrue($permission->getId() === 1);
         $this->assertTrue($permission->getRoles() instanceof BinarySearchTree);
         $this->assertTrue($defaultPermissions->height() === 4);
@@ -68,9 +90,9 @@ class PermissionHandlerTest extends TestCase {
      * @throws InvalidBitLengthException
      * @throws InvalidSearchComparisionException
      */
-    public function testWithContext(){
-        $permissionHandler = new PermissionHandler(new ContextDataProvider());
-        $permission = PermissionUtil::toPermission(1);
+    public function testWithContext(): void {
+        $permissionHandler   = new PermissionHandler(new ContextDataProvider());
+        $permission          = PermissionUtil::toPermission(1);
         $permission75User999 = PermissionUtil::toPermission(
             75
             , UserUtil::toUser(999)
@@ -92,7 +114,7 @@ class PermissionHandlerTest extends TestCase {
      * @throws InvalidSearchComparisionException
      * @throws InvalidBitLengthException
      */
-    public function testUserRolesAndPermissions() {
+    public function testUserRolesAndPermissions(): void {
         $permissionHandler = new PermissionHandler(new DataProvider());
         $this->assertTrue($permissionHandler->hasPermission(PermissionUtil::toPermission(101)) === true);
         $permission = PermissionUtil::toPermission(1);
@@ -105,7 +127,7 @@ class PermissionHandlerTest extends TestCase {
      * @throws InvalidSearchComparisionException
      * @throws InvalidBitLengthException
      */
-    public function testMassiveData() {
+    public function testMassiveData(): void {
         $permissionHandler = new PermissionHandler(new MassiveDataProvider());
         $this->assertTrue($permissionHandler->hasPermission(PermissionUtil::toPermission(1)) === false);
     }
@@ -114,12 +136,12 @@ class PermissionHandlerTest extends TestCase {
      * @throws InvalidSearchComparisionException
      * @throws InvalidBitLengthException
      */
-    public function testHasRole() {
+    public function testHasRole(): void {
         $permissionHandler = new PermissionHandler(new DataProvider());
-        $role = RoleUtil::toRole(1);
-        $hasRole = $permissionHandler->hasRole($role);
+        $role              = RoleUtil::toRole(1);
+        $hasRole           = $permissionHandler->hasRole($role);
         $this->assertTrue($hasRole === false);
-        $role = RoleUtil::toRole(5);
+        $role    = RoleUtil::toRole(5);
         $hasRole = $permissionHandler->hasRole($role);
         $this->assertTrue($hasRole === true);
     }

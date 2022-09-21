@@ -69,7 +69,7 @@ class DataProvider implements IDataProvider {
      * @return Permission|null
      */
     public function getPermission(int $id): ?IPermission {
-        if (in_array($id, [1, 8, 75, 19])) {
+        if (in_array($id, [1, 8, 75, 19], true)) {
             $permission = new Permission();
             $permission->setId($id);
             $permission->setContext(

@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method doganoo\\\\SimpleRBAC\\\\Test\\\\DataProvider\\\\Permission\\:\\:compareTo\\(\\) has parameter \\$object with no type specified\\.$#"
+			count: 1
+			path: ../../test/DataProvider/Permission.php
+
+		-
+			message: "#^Method doganoo\\\\SimpleRBAC\\\\Test\\\\DataProvider\\\\Role\\:\\:compareTo\\(\\) has parameter \\$object with no type specified\\.$#"
+			count: 1
+			path: ../../test/DataProvider/Role.php

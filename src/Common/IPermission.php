@@ -31,6 +31,7 @@ use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
  * @package doganoo\SimpleRBAC\Common
  */
 interface IPermission extends IComparable {
+
     /**
      * @return string
      */
@@ -64,6 +65,6 @@ interface IPermission extends IComparable {
     /**
      * @return IContext|null
      */
-    public function getContext():?IContext;
+    public function getContext(): ?IContext;
 
 }

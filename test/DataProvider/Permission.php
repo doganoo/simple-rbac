@@ -29,7 +29,6 @@ namespace doganoo\SimpleRBAC\Test\DataProvider;
 use doganoo\PHPAlgorithms\Datastructure\Graph\Tree\BinarySearchTree;
 use doganoo\SimpleRBAC\Common\IContext;
 use doganoo\SimpleRBAC\Common\IPermission;
-use doganoo\SimpleRBAC\Common\IUser;
 use JsonSerializable;
 
 /**
@@ -39,14 +38,10 @@ use JsonSerializable;
  */
 class Permission implements IPermission, JsonSerializable {
 
-    /** @var int $id */
-    private $id;
-    /** @var string $name */
-    private $name;
-    /** @var null|BinarySearchTree */
-    private $roles = null;
-    /** @var null|IContext */
-    private $context = null;
+    private int               $id;
+    private string            $name;
+    private ?BinarySearchTree $roles   = null;
+    private ?IContext         $context = null;
 
     /**
      * @return string
@@ -110,9 +105,10 @@ class Permission implements IPermission, JsonSerializable {
         $this->id = $id;
     }
 
-    public function setContext(IContext $context):void {
+    public function setContext(IContext $context): void {
         $this->context = $context;
     }
+
     /**
      * @return IContext|null
      */
@@ -122,12 +118,12 @@ class Permission implements IPermission, JsonSerializable {
 
     /**
      * Specify data which should be serialized to JSON
-     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
-     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * @link  https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return array data which can be serialized by <b>json_encode</b>,
      * which is a value of any type other than a resource.
      * @since 5.4.0
      */
-    public function jsonSerialize() {
+    public function jsonSerialize(): array {
         return [
             "id"        => $this->getId()
             , "name"    => $this->getName()
@@ -135,4 +131,5 @@ class Permission implements IPermission, JsonSerializable {
             , "context" => $this->getContext()
         ];
     }
+
 }

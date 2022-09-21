@@ -31,7 +31,11 @@ namespace doganoo\SimpleRBAC\Common;
  * @package doganoo\SimpleRBAC\Common
  */
 interface IPermissionHandler {
+
     public function __construct(IDataProvider $dataProvider);
+
     public function hasPermission(IPermission $permission): bool;
+
     public function hasRole(IRole $role): bool;
+
 }

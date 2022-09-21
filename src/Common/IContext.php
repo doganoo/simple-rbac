@@ -35,6 +35,7 @@ namespace doganoo\SimpleRBAC\Common;
  * @package doganoo\SimpleRBAC\Common
  */
 interface IContext {
+
     /** @var string USER */
     public const USER = "attribute.user";
 
@@ -43,7 +44,7 @@ interface IContext {
      *
      * @param IUser $user
      */
-    public function addUser(IUser $user):void;
+    public function addUser(IUser $user): void;
 
     /**
      * returns an attribute
