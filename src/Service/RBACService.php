@@ -28,7 +28,7 @@ class RBACService implements RBACServiceInterface {
     public function hasPermission(UserInterface $user, PermissionInterface $permission): bool {
         /** @var RoleInterface $role */
         foreach ($user->getRoles()->toArray() as $role) {
-            if (true === $role->getPermissions()->contains($permission->getId())) {
+            if (true === $role->getPermissions()->contains($permission)) {
                 return true;
             }
         }
@@ -36,7 +36,7 @@ class RBACService implements RBACServiceInterface {
     }
 
     public function hasRole(UserInterface $user, RoleInterface $role): bool {
-        return $user->getRoles()->contains($role->getId());
+        return $user->getRoles()->contains($role);
     }
 
 }
