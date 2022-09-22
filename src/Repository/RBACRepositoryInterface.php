@@ -15,4 +15,6 @@ interface RBACRepositoryInterface {
 
     public function getAllPermissions(): ArrayList;
 
+    public function getAllRoles(): ArrayList;
+
 }
