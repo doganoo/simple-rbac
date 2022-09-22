@@ -22,6 +22,7 @@ declare(strict_types=1);
 
 namespace doganoo\SimpleRBAC\Entity;
 
+use DateTimeInterface;
 use doganoo\PHPAlgorithms\Common\Interfaces\IComparable;
 
 /**
@@ -40,5 +41,10 @@ interface PermissionInterface extends IComparable {
      * @return string
      */
     public function getName(): string;
+
+    /**
+     * @return DateTimeInterface
+     */
+    public function getCreateTs(): DateTimeInterface;
 
 }

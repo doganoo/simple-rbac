@@ -26,6 +26,7 @@ declare(strict_types=1);
 
 namespace doganoo\SimpleRBAC\Entity;
 
+use DateTimeInterface;
 use doganoo\PHPAlgorithms\Common\Interfaces\IComparable;
 use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
 
@@ -50,5 +51,10 @@ interface RoleInterface extends IComparable {
      * @return HashTable
      */
     public function getPermissions(): HashTable;
+
+    /**
+     * @return DateTimeInterface
+     */
+    public function getCreateTs(): DateTimeInterface;
 
 }
