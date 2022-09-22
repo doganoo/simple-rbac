@@ -5,6 +5,7 @@ namespace doganoo\SimpleRBAC\Repository;
 
 use doganoo\PHPAlgorithms\Datastructure\Lists\ArrayList\ArrayList;
 use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
+use doganoo\SimpleRBAC\Entity\PermissionInterface;
 use doganoo\SimpleRBAC\Entity\RoleInterface;
 use doganoo\SimpleRBAC\Entity\UserInterface;
 
@@ -19,5 +20,7 @@ interface RBACRepositoryInterface {
     public function getAllRoles(): ArrayList;
 
     public function getRole(int $roleId): RoleInterface;
+
+    public function getPermissionByName(string $name): PermissionInterface;
 
 }
