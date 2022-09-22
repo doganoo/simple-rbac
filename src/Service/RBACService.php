@@ -7,13 +7,13 @@ use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
 use doganoo\SimpleRBAC\Entity\PermissionInterface;
 use doganoo\SimpleRBAC\Entity\RoleInterface;
 use doganoo\SimpleRBAC\Entity\UserInterface;
-use doganoo\SimpleRBAC\Repository\PermissionRepositoryInterface;
+use doganoo\SimpleRBAC\Repository\RBACRepositoryInterface;
 
 class RBACService implements RBACServiceInterface {
 
-    private PermissionRepositoryInterface $permissionRepository;
+    private RBACRepositoryInterface $permissionRepository;
 
-    public function __construct(PermissionRepositoryInterface $permissionRepository) {
+    public function __construct(RBACRepositoryInterface $permissionRepository) {
         $this->permissionRepository = $permissionRepository;
     }
 

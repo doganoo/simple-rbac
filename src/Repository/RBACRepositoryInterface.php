@@ -7,7 +7,7 @@ use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
 use doganoo\SimpleRBAC\Entity\RoleInterface;
 use doganoo\SimpleRBAC\Entity\UserInterface;
 
-interface PermissionRepositoryInterface {
+interface RBACRepositoryInterface {
 
     public function getRolesByUser(UserInterface $user): HashTable;
 

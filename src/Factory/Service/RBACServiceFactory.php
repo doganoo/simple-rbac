@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace doganoo\SimpleRBAC\Factory\Service;
 
-use doganoo\SimpleRBAC\Repository\PermissionRepositoryInterface;
+use doganoo\SimpleRBAC\Repository\RBACRepositoryInterface;
 use doganoo\SimpleRBAC\Service\RBACService;
 use doganoo\SimpleRBAC\Service\RBACServiceInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
@@ -17,7 +17,7 @@ class RBACServiceFactory implements FactoryInterface {
         , ?array           $options = null
     ): RBACServiceInterface {
         return new RBACService(
-            $container->get(PermissionRepositoryInterface::class)
+            $container->get(RBACRepositoryInterface::class)
         );
     }
 
