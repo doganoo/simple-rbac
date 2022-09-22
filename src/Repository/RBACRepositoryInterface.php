@@ -31,6 +31,8 @@ interface RBACRepositoryInterface {
 
     public function getRoleByName(string $name): RoleInterface;
 
-    public function assignUserToRole(UserInterface $user, RoleInterface $role): void;
+    public function assignRoleToUser(UserInterface $user, RoleInterface $role): void;
+
+    public function assignPermissionToRole(PermissionInterface $permission, RoleInterface $role): void;
 
 }
