@@ -23,4 +23,6 @@ interface RBACRepositoryInterface {
 
     public function getPermissionByName(string $name): PermissionInterface;
 
+    public function createRole(RoleInterface $role): RoleInterface;
+
 }
