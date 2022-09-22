@@ -18,6 +18,6 @@ interface RBACRepositoryInterface {
 
     public function getAllRoles(): ArrayList;
 
-    public function getRole(): RoleInterface;
+    public function getRole(int $roleId): RoleInterface;
 
 }
