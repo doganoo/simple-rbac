@@ -37,6 +37,9 @@ use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
  */
 interface RoleInterface extends IComparable {
 
+    public const DEFAULT      = 1;
+    public const DEFAULT_NAME = 'default';
+
     /**
      * @return int
      */

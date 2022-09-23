@@ -32,6 +32,9 @@ use doganoo\PHPAlgorithms\Common\Interfaces\IComparable;
  */
 interface PermissionInterface extends IComparable {
 
+    public const DEFAULT      = 1;
+    public const DEFAULT_NAME = 'default';
+
     /**
      * @return int
      */
