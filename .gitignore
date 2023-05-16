@@ -3,3 +3,4 @@
 /vendor/
 /aufgaben/
 main.php
+/.phpunit.result.cache
