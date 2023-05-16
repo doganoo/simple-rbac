@@ -18,12 +18,12 @@ jobs:
           dev: yes
           args: --profile --ignore-platform-reqs
           php_extensions: json
-          php_version: 7.4
+          php_version: 8.2
 
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v3
         with:
           configuration: phpunit.xml
           php_extensions: json
-          php_version: 7.4
+          php_version: 8.2
           memory_limit: 256M
