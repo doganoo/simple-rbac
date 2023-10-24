@@ -16,6 +16,9 @@
     "mezzio/mezzio": "^3.11",
     "laminas/laminas-servicemanager": "^3.16"
   },
+  "conflict": {
+    "stevebauman/unfinalize": "*"
+  },
   "require-dev": {
     "ergebnis/composer-normalize": "^2.28",
     "phpcompatibility/php-compatibility": "^9.3",
