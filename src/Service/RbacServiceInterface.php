@@ -7,7 +7,7 @@ use doganoo\SimpleRBAC\Entity\PermissionInterface;
 use doganoo\SimpleRBAC\Entity\RoleInterface;
 use doganoo\SimpleRBAC\Entity\UserInterface;
 
-interface RBACServiceInterface {
+interface RbacServiceInterface {
 
     public function getPermission(int $permissionId): PermissionInterface;
 

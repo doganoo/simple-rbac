@@ -6,14 +6,14 @@ namespace doganoo\SimpleRBAC\Service;
 use doganoo\SimpleRBAC\Entity\PermissionInterface;
 use doganoo\SimpleRBAC\Entity\RoleInterface;
 use doganoo\SimpleRBAC\Entity\UserInterface;
-use doganoo\SimpleRBAC\Repository\RBACRepositoryInterface;
+use doganoo\SimpleRBAC\Repository\RbacRepositoryInterface;
 
-class RBACService implements RBACServiceInterface {
+class RbacService implements RbacServiceInterface {
 
-    private RBACRepositoryInterface $rbacRepository;
+    private RbacRepositoryInterface $rbacRepository;
 
     public function __construct(
-        RBACRepositoryInterface $rbacRepository
+        RbacRepositoryInterface $rbacRepository
     ) {
         $this->rbacRepository = $rbacRepository;
     }

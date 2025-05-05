@@ -9,7 +9,7 @@ use doganoo\SimpleRBAC\Entity\PermissionInterface;
 use doganoo\SimpleRBAC\Entity\RoleInterface;
 use doganoo\SimpleRBAC\Entity\UserInterface;
 
-interface RBACRepositoryInterface {
+interface RbacRepositoryInterface {
 
     public function getRolesByUser(UserInterface $user): HashTable;
 

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace doganoo\SimpleRBAC;
 
-use doganoo\SimpleRBAC\Factory\Service\RBACServiceFactory;
-use doganoo\SimpleRBAC\Service\RBACService;
-use doganoo\SimpleRBAC\Service\RBACServiceInterface;
+use doganoo\SimpleRBAC\Factory\Service\RbacServiceFactory;
+use doganoo\SimpleRBAC\Service\RbacService;
+use doganoo\SimpleRBAC\Service\RbacServiceInterface;
 
 final class ConfigProvider {
 
@@ -13,10 +13,10 @@ final class ConfigProvider {
         return [
             'dependencies' => [
                 'factories' => [
-                    RBACService::class => RBACServiceFactory::class
+                    RbacService::class => RbacServiceFactory::class
                 ],
                 'aliases'   => [
-                    RBACServiceInterface::class => RBACService::class
+                    RbacServiceInterface::class => RbacService::class
                 ]
             ]
         ];
