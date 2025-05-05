@@ -13,7 +13,7 @@
     "php": ">=8.0",
     "ext-json": "*",
     "doganoo/php-algorithms": "^2.1",
-    "laminas/laminas-servicemanager": "^4.4",
+    "laminas/laminas-servicemanager": "^3.10",
     "mezzio/mezzio": "^3.21",
     "laminas/laminas-diactoros": "^3.5",
     "ucarsolutions/entities": "dev-main"
