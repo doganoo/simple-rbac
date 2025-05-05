@@ -1264,12 +1264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ucar-Solutions/Entities.git",
-                "reference": "0ffd7081354a6323449d7cc1c986100c6fe3c5b6"
+                "reference": "9f7ce0231849d5bbd94ce41c8a880ea7913ecc65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ucar-Solutions/Entities/zipball/0ffd7081354a6323449d7cc1c986100c6fe3c5b6",
-                "reference": "0ffd7081354a6323449d7cc1c986100c6fe3c5b6",
+                "url": "https://api.github.com/repos/Ucar-Solutions/Entities/zipball/9f7ce0231849d5bbd94ce41c8a880ea7913ecc65",
+                "reference": "9f7ce0231849d5bbd94ce41c8a880ea7913ecc65",
                 "shasum": ""
             },
             "require": {
@@ -1298,7 +1298,7 @@
                 "issues": "https://github.com/Ucar-Solutions/Entities/issues",
                 "source": "https://github.com/Ucar-Solutions/Entities/tree/main"
             },
-            "time": "2025-05-05T17:21:50+00:00"
+            "time": "2025-05-05T19:24:17+00:00"
         },
         {
             "name": "webmozart/assert",
