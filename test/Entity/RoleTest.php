@@ -5,8 +5,8 @@ namespace doganoo\SimpleRbac\Test\Entity;
 
 use DateTimeImmutable;
 use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
-use doganoo\SimpleRbac\Entity\Role;
 use PHPUnit\Framework\TestCase;
+use UcarSolutions\Entities\User\Rbac\Role;
 
 final class RoleTest extends TestCase {
 

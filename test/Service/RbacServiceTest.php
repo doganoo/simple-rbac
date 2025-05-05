@@ -5,13 +5,12 @@ namespace doganoo\SimpleRbac\Test\Service;
 
 use DateTimeImmutable;
 use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
-use doganoo\SimpleRbac\Entity\Permission;
-use doganoo\SimpleRbac\Entity\Role;
-use doganoo\SimpleRbac\Entity\RoleInterface;
-use doganoo\SimpleRbac\Entity\UserInterface;
 use doganoo\SimpleRbac\Repository\RbacRepositoryInterface;
 use doganoo\SimpleRbac\Service\RbacService;
 use PHPUnit\Framework\TestCase;
+use UcarSolutions\Entities\User\Rbac\Permission;
+use UcarSolutions\Entities\User\Rbac\Role;
+use UcarSolutions\Entities\User\UserInterface;
 
 final class RbacServiceTest extends TestCase {
 

@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace doganoo\SimpleRbac\Service;
 
-use doganoo\SimpleRbac\Entity\PermissionInterface;
-use doganoo\SimpleRbac\Entity\RoleInterface;
-use doganoo\SimpleRbac\Entity\UserInterface;
 use doganoo\SimpleRbac\Repository\RbacRepositoryInterface;
+use UcarSolutions\Entities\User\Rbac\PermissionInterface;
+use UcarSolutions\Entities\User\Rbac\RoleInterface;
+use UcarSolutions\Entities\User\UserInterface;
 
 class RbacService implements RbacServiceInterface {
 

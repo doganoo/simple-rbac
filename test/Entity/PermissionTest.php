@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace doganoo\SimpleRbac\Test\Entity;
 
 use DateTimeImmutable;
-use doganoo\SimpleRbac\Entity\Permission;
 use PHPUnit\Framework\TestCase;
+use UcarSolutions\Entities\User\Rbac\Permission;
 
 final class PermissionTest extends TestCase {
 
