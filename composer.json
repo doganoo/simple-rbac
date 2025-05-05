@@ -12,10 +12,10 @@
   "require": {
     "php": ">=8.0",
     "ext-json": "*",
-    "doganoo/php-algorithms": "^2.0",
-    "laminas/laminas-servicemanager": "^3.16",
-    "mezzio/mezzio": "^0.3.1",
-    "laminas/laminas-diactoros": "^1.3"
+    "doganoo/php-algorithms": "^2.1",
+    "laminas/laminas-servicemanager": "^4.4",
+    "mezzio/mezzio": "^3.21",
+    "laminas/laminas-diactoros": "^3.5"
   },
   "conflict": {
     "stevebauman/unfinalize": "*"
