@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace doganoo\SimpleRBAC\Service;
+namespace doganoo\SimpleRbac\Service;
 
-use doganoo\SimpleRBAC\Entity\PermissionInterface;
-use doganoo\SimpleRBAC\Entity\RoleInterface;
-use doganoo\SimpleRBAC\Entity\UserInterface;
-use doganoo\SimpleRBAC\Repository\RbacRepositoryInterface;
+use doganoo\SimpleRbac\Entity\PermissionInterface;
+use doganoo\SimpleRbac\Entity\RoleInterface;
+use doganoo\SimpleRbac\Entity\UserInterface;
+use doganoo\SimpleRbac\Repository\RbacRepositoryInterface;
 
 class RbacService implements RbacServiceInterface {
 

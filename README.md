@@ -28,16 +28,16 @@ composer require doganoo/simple-rbac
 There are two main interfaces you have to implement:
 
 ```
-* doganoo\SimpleRBAC\Common\IUser
-* doganoo\SimpleRBAC\Common\IDataProvider
+* doganoo\SimpleRbac\Common\IUser
+* doganoo\SimpleRbac\Common\IDataProvider
 ```
 The first interface represents the user to whom permissions are granted or denied. The second interface holds all necessary information, such as the user, a single permission and default permissions.
 
 IDataProvider can be used to connect to a data source (database, files, HTTP, etc.) in order to set up.
 
-The ```doganoo\SimpleRBAC\Handler\PermissionHandler``` class uses the interfaces above to determine whether an action is permitted or not.
+The ```doganoo\SimpleRbac\Handler\PermissionHandler``` class uses the interfaces above to determine whether an action is permitted or not.
 
-```doganoo\SimpleRBAC\Common\IPermission``` and ```doganoo\SimpleRBAC\Common\IRole``` interfaces represent a single permission and a user's role.
+```doganoo\SimpleRbac\Common\IPermission``` and ```doganoo\SimpleRbac\Common\IRole``` interfaces represent a single permission and a user's role.
 
 
 ## Contributions

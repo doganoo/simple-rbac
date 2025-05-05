@@ -24,14 +24,14 @@ declare(strict_types=1);
  * SOFTWARE.
  */
 
-namespace doganoo\SimpleRBAC\Entity;
+namespace doganoo\SimpleRbac\Entity;
 
 use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
 
 /**
  * Interface IUser
  *
- * @package doganoo\SimpleRBAC\Common
+ * @package doganoo\SimpleRbac\Common
  */
 interface UserInterface {
 

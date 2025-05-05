@@ -29,8 +29,8 @@
   },
   "autoload": {
     "psr-4": {
-      "doganoo\\SimpleRBAC\\": "src/",
-      "doganoo\\SimpleRBAC\\Test\\": "test/"
+      "doganoo\\SimpleRbac\\": "src/",
+      "doganoo\\SimpleRbac\\Test\\": "test/"
     }
   },
   "config": {

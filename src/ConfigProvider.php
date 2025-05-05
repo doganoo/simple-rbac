@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace doganoo\SimpleRBAC;
+namespace doganoo\SimpleRbac;
 
-use doganoo\SimpleRBAC\Factory\Service\RbacServiceFactory;
-use doganoo\SimpleRBAC\Service\RbacService;
-use doganoo\SimpleRBAC\Service\RbacServiceInterface;
+use doganoo\SimpleRbac\Factory\Service\RbacServiceFactory;
+use doganoo\SimpleRbac\Service\RbacService;
+use doganoo\SimpleRbac\Service\RbacServiceInterface;
 
 final class ConfigProvider {
 

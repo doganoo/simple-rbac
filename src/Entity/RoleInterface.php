@@ -24,7 +24,7 @@ declare(strict_types=1);
  * SOFTWARE.
  */
 
-namespace doganoo\SimpleRBAC\Entity;
+namespace doganoo\SimpleRbac\Entity;
 
 use DateTimeInterface;
 use doganoo\PHPAlgorithms\Common\Interfaces\IComparable;
@@ -33,7 +33,7 @@ use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
 /**
  * Interface IRole
  *
- * @package doganoo\SimpleRBAC\Common
+ * @package doganoo\SimpleRbac\Common
  */
 interface RoleInterface extends IComparable {
 

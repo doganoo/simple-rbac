@@ -20,7 +20,7 @@ declare(strict_types=1);
  * SOFTWARE.
  */
 
-namespace doganoo\SimpleRBAC\Entity;
+namespace doganoo\SimpleRbac\Entity;
 
 use DateTimeInterface;
 use doganoo\PHPAlgorithms\Common\Interfaces\IComparable;
@@ -28,7 +28,7 @@ use doganoo\PHPAlgorithms\Common\Interfaces\IComparable;
 /**
  * Interface IPermission
  *
- * @package doganoo\SimpleRBAC\Common
+ * @package doganoo\SimpleRbac\Common
  */
 interface PermissionInterface extends IComparable {
 

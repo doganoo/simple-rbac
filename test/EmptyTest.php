@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace doganoo\SimpleRBAC\Test;
+namespace doganoo\SimpleRbac\Test;
 
 use PHPUnit\Framework\TestCase;
 

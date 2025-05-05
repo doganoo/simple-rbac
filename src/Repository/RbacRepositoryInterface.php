@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace doganoo\SimpleRBAC\Repository;
+namespace doganoo\SimpleRbac\Repository;
 
 use doganoo\PHPAlgorithms\Datastructure\Lists\ArrayList\ArrayList;
 use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
-use doganoo\SimpleRBAC\Entity\PermissionInterface;
-use doganoo\SimpleRBAC\Entity\RoleInterface;
-use doganoo\SimpleRBAC\Entity\UserInterface;
+use doganoo\SimpleRbac\Entity\PermissionInterface;
+use doganoo\SimpleRbac\Entity\RoleInterface;
+use doganoo\SimpleRbac\Entity\UserInterface;
 
 interface RbacRepositoryInterface {
 

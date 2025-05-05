@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace doganoo\SimpleRBAC\Factory\Service;
+namespace doganoo\SimpleRbac\Factory\Service;
 
-use doganoo\SimpleRBAC\Repository\RbacRepositoryInterface;
-use doganoo\SimpleRBAC\Service\RbacService;
-use doganoo\SimpleRBAC\Service\RbacServiceInterface;
+use doganoo\SimpleRbac\Repository\RbacRepositoryInterface;
+use doganoo\SimpleRbac\Service\RbacService;
+use doganoo\SimpleRbac\Service\RbacServiceInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Psr\Container\ContainerInterface;
 
