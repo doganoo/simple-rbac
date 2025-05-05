@@ -38,9 +38,9 @@ interface UserInterface {
     /**
      * the users identifier
      *
-     * @return int
+     * @return string
      */
-    public function getId(): int;
+    public function getId(): string;
 
     /**
      * returns the users roles
