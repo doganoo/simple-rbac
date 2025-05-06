@@ -9,7 +9,7 @@ use UcarSolutions\Entities\User\UserInterface;
 
 interface RbacServiceInterface {
 
-    public function getPermission(int $permissionId): PermissionInterface;
+    public function getPermission(string $permissionId): PermissionInterface;
 
     public function hasPermission(UserInterface $user, PermissionInterface $permission): bool;
 

@@ -18,7 +18,7 @@ class RbacService implements RbacServiceInterface {
         $this->rbacRepository = $rbacRepository;
     }
 
-    public function getPermission(int $permissionId): PermissionInterface {
+    public function getPermission(string $permissionId): PermissionInterface {
         return $this->rbacRepository->getPermission($permissionId);
     }
 
