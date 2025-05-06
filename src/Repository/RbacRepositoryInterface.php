@@ -13,13 +13,13 @@ interface RbacRepositoryInterface {
 
     public function getRolesByUser(UserInterface $user): HashTable;
 
-    public function getPermissionsByRoleId(int $roleId): HashTable;
+    public function getPermissionsByRoleId(string $roleId): HashTable;
 
     public function getAllPermissions(): ArrayList;
 
     public function getAllRoles(): ArrayList;
 
-    public function getRole(int $roleId): RoleInterface;
+    public function getRole(string $roleId): RoleInterface;
 
     public function getPermission(string $permissionId): PermissionInterface;
 
