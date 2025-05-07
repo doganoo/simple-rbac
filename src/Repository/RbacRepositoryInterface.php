@@ -5,6 +5,7 @@ namespace doganoo\SimpleRbac\Repository;
 
 use doganoo\PHPAlgorithms\Datastructure\Lists\ArrayList\ArrayList;
 use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
+use UcarSolutions\Entities\Organization\OrganizationInterface;
 use UcarSolutions\Entities\Rbac\PermissionInterface;
 use UcarSolutions\Entities\Rbac\RoleInterface;
 use UcarSolutions\Entities\User\UserInterface;
@@ -12,6 +13,7 @@ use UcarSolutions\Entities\User\UserInterface;
 interface RbacRepositoryInterface {
 
     public function getRolesByUser(UserInterface $user): HashTable;
+    public function getRolesByOrganization(OrganizationInterface $user): HashTable;
 
     public function getPermissionsByRoleId(string $roleId): HashTable;
 
