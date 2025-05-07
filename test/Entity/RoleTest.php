@@ -6,12 +6,12 @@ namespace doganoo\SimpleRbac\Test\Entity;
 use DateTimeImmutable;
 use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
 use PHPUnit\Framework\TestCase;
-use UcarSolutions\Entities\User\Rbac\Role;
+use UcarSolutions\Entities\Rbac\Role;
 
 final class RoleTest extends TestCase {
 
     private Role              $role;
-    private int               $id   = 1;
+    private string            $id   = "blablabla";
     private string            $name = 'admin';
     private HashTable         $permissions;
     private DateTimeImmutable $createTs;

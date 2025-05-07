@@ -266,16 +266,16 @@
         },
         {
             "name": "laminas/laminas-escaper",
-            "version": "2.17.x-dev",
+            "version": "2.18.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-escaper.git",
-                "reference": "269726b881c79beb57c0c9cee20a32389c9b9929"
+                "reference": "df1ef9503299a8e3920079a16263b578eaf7c3ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-escaper/zipball/269726b881c79beb57c0c9cee20a32389c9b9929",
-                "reference": "269726b881c79beb57c0c9cee20a32389c9b9929",
+                "url": "https://api.github.com/repos/laminas/laminas-escaper/zipball/df1ef9503299a8e3920079a16263b578eaf7c3ba",
+                "reference": "df1ef9503299a8e3920079a16263b578eaf7c3ba",
                 "shasum": ""
             },
             "require": {
@@ -324,7 +324,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2025-04-15T13:01:37+00:00"
+            "time": "2025-05-06T19:29:36+00:00"
         },
         {
             "name": "laminas/laminas-httphandlerrunner",
@@ -1155,12 +1155,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ucar-Solutions/Entities.git",
-                "reference": "43e831cc125a0a64504a5a123e29a6e04c510d36"
+                "reference": "007c666b86d350a93b1352556c5fb12fb4c9f188"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ucar-Solutions/Entities/zipball/43e831cc125a0a64504a5a123e29a6e04c510d36",
-                "reference": "43e831cc125a0a64504a5a123e29a6e04c510d36",
+                "url": "https://api.github.com/repos/Ucar-Solutions/Entities/zipball/007c666b86d350a93b1352556c5fb12fb4c9f188",
+                "reference": "007c666b86d350a93b1352556c5fb12fb4c9f188",
                 "shasum": ""
             },
             "require": {
@@ -1189,7 +1189,7 @@
                 "issues": "https://github.com/Ucar-Solutions/Entities/issues",
                 "source": "https://github.com/Ucar-Solutions/Entities/tree/main"
             },
-            "time": "2025-05-05T21:11:38+00:00"
+            "time": "2025-05-07T20:58:39+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -1723,12 +1723,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jsonrainbow/json-schema.git",
-                "reference": "708a160e0b1950639b270733df400247c1091da7"
+                "reference": "b209eb8f203fd36284b2c7470b3d65d0c0b8dff0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jsonrainbow/json-schema/zipball/708a160e0b1950639b270733df400247c1091da7",
-                "reference": "708a160e0b1950639b270733df400247c1091da7",
+                "url": "https://api.github.com/repos/jsonrainbow/json-schema/zipball/b209eb8f203fd36284b2c7470b3d65d0c0b8dff0",
+                "reference": "b209eb8f203fd36284b2c7470b3d65d0c0b8dff0",
                 "shasum": ""
             },
             "require": {
@@ -1791,7 +1791,7 @@
                 "issues": "https://github.com/jsonrainbow/json-schema/issues",
                 "source": "https://github.com/jsonrainbow/json-schema/tree/master"
             },
-            "time": "2025-05-05T09:32:11+00:00"
+            "time": "2025-05-07T19:56:24+00:00"
         },
         {
             "name": "localheinz/diff",
@@ -2228,12 +2228,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "36b3925046cf70ddb434566165c5fe01389a993f"
+                "reference": "b7137d1a5be9f129daf5c3520e7b50f187194ded"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/36b3925046cf70ddb434566165c5fe01389a993f",
-                "reference": "36b3925046cf70ddb434566165c5fe01389a993f",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/b7137d1a5be9f129daf5c3520e7b50f187194ded",
+                "reference": "b7137d1a5be9f129daf5c3520e7b50f187194ded",
                 "shasum": ""
             },
             "require": {
@@ -2278,7 +2278,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-05T16:02:47+00:00"
+            "time": "2025-05-06T09:57:30+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

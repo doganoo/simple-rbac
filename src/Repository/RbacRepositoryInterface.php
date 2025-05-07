@@ -5,8 +5,8 @@ namespace doganoo\SimpleRbac\Repository;
 
 use doganoo\PHPAlgorithms\Datastructure\Lists\ArrayList\ArrayList;
 use doganoo\PHPAlgorithms\Datastructure\Table\HashTable;
-use UcarSolutions\Entities\User\Rbac\PermissionInterface;
-use UcarSolutions\Entities\User\Rbac\RoleInterface;
+use UcarSolutions\Entities\Rbac\PermissionInterface;
+use UcarSolutions\Entities\Rbac\RoleInterface;
 use UcarSolutions\Entities\User\UserInterface;
 
 interface RbacRepositoryInterface {

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace doganoo\SimpleRbac\Service;
 
-use UcarSolutions\Entities\User\Rbac\PermissionInterface;
-use UcarSolutions\Entities\User\Rbac\RoleInterface;
+use UcarSolutions\Entities\Rbac\PermissionInterface;
+use UcarSolutions\Entities\Rbac\RoleInterface;
 use UcarSolutions\Entities\User\UserInterface;
 
 interface RbacServiceInterface {

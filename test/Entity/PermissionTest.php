@@ -5,12 +5,12 @@ namespace doganoo\SimpleRbac\Test\Entity;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
-use UcarSolutions\Entities\User\Rbac\Permission;
+use UcarSolutions\Entities\Rbac\Permission;
 
 final class PermissionTest extends TestCase {
 
     private Permission        $permission;
-    private int               $id   = 1;
+    private string            $id   = "fsdfsfds";
     private string            $name = 'view_user';
     private DateTimeImmutable $createTs;
 
