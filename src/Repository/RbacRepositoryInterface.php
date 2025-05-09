@@ -13,7 +13,7 @@ use UcarSolutions\Entities\User\UserInterface;
 interface RbacRepositoryInterface {
 
     public function getRolesByUser(UserInterface $user): HashTable;
-    public function getRolesByOrganization(OrganizationInterface $user): HashTable;
+    public function getRolesByOrganization(OrganizationInterface $organization): HashTable;
 
     public function getPermissionsByRoleId(string $roleId): HashTable;
 
